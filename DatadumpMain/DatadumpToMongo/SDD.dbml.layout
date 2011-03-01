@@ -1,0 +1,444 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 30, 32.25" name="SDD">
+  <DataContextMoniker Name="/SDDDataContext" />
+  <nestedChildShapes>
+    <classShape Id="daa073db-da23-4142-854e-6369ccaea404" absoluteBounds="0.75, 0.75, 2, 2.1554996744791666">
+      <DataClassMoniker Name="/SDDDataContext/agtAgent" />
+      <nestedChildShapes>
+        <elementListCompartment Id="987e9919-23b5-4451-9c71-351c068e4afd" absoluteBounds="0.765, 1.21, 1.9700000000000002, 1.5954996744791665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="fed8f218-efb2-4652-9dad-acb027e2513a" absoluteBounds="3.75, 0.75, 2, 1.5785953776041666">
+      <DataClassMoniker Name="/SDDDataContext/trnTranslation" />
+      <nestedChildShapes>
+        <elementListCompartment Id="54660638-320f-4685-b681-549c5aef3406" absoluteBounds="3.765, 1.21, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="ff134a15-1de3-47c0-9e68-0e85cc3f226c" absoluteBounds="0.75, 3.75, 2, 1.193992513020834">
+      <DataClassMoniker Name="/SDDDataContext/agtAgentType" />
+      <nestedChildShapes>
+        <elementListCompartment Id="9c119218-c6b3-49ed-8d22-6a66d9e85e1c" absoluteBounds="0.765, 4.21, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="d4ef0be6-f484-4a1b-84b4-455189792d98" absoluteBounds="3.75, 3.75, 2, 1.3862939453125005">
+      <DataClassMoniker Name="/SDDDataContext/agtConfig" />
+      <nestedChildShapes>
+        <elementListCompartment Id="62607ae4-68bb-4230-809f-c8d5c0534f71" absoluteBounds="3.765, 4.21, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="60a169b9-59cd-4cbe-a13a-ad44cc9f4254" absoluteBounds="6.75, 0.75, 2, 1.1939925130208335">
+      <DataClassMoniker Name="/SDDDataContext/agtResearchAgent" />
+      <nestedChildShapes>
+        <elementListCompartment Id="bf1e4e55-03fb-4654-b216-7531792aacd8" absoluteBounds="6.765, 1.21, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="796977ff-62b9-4a09-bb1c-43798d1970bb" absoluteBounds="0.75, 6.75, 2, 2.9247054036458318">
+      <DataClassMoniker Name="/SDDDataContext/chrAncestry" />
+      <nestedChildShapes>
+        <elementListCompartment Id="5e473f9d-e9b2-4441-b69b-1ae545ad60e7" absoluteBounds="0.765, 7.21, 1.9700000000000002, 2.364705403645833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="a9749d3b-a5db-4dba-a41f-97ad12ee89a6" absoluteBounds="6.75, 2.75, 2, 1.9631982421875005">
+      <DataClassMoniker Name="/SDDDataContext/chrAttribute" />
+      <nestedChildShapes>
+        <elementListCompartment Id="a244adb9-3ed7-4c85-b41f-4a61387783aa" absoluteBounds="6.765, 3.21, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="28c87704-9afc-4d53-8112-35841005448d" absoluteBounds="3.75, 6.75, 2, 4.0785139973958318">
+      <DataClassMoniker Name="/SDDDataContext/chrBloodline" />
+      <nestedChildShapes>
+        <elementListCompartment Id="6c4cfd96-48c1-4315-93fd-5efaf04cce6d" absoluteBounds="3.765, 7.21, 1.9700000000000002, 3.518513997395833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="3214a4f5-4d37-4c5c-9c3c-537af2ed4fc2" absoluteBounds="6.75, 5.75, 2, 2.9247054036458326">
+      <DataClassMoniker Name="/SDDDataContext/chrFaction" />
+      <nestedChildShapes>
+        <elementListCompartment Id="b12a2c9d-0632-4454-81a6-8728b7d46710" absoluteBounds="6.765, 6.21, 1.9700000000000002, 2.364705403645833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="c7b4abcd-b9db-4072-9d3a-6d1fa2e9c5d7" absoluteBounds="9.75, 0.75, 2, 1.7708968098958329">
+      <DataClassMoniker Name="/SDDDataContext/chrRace" />
+      <nestedChildShapes>
+        <elementListCompartment Id="b809cdc6-b562-4342-816b-1c3eedb00718" absoluteBounds="9.765, 1.21, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="9d03e76c-236d-4296-a5b8-7db06fa3efc6" absoluteBounds="9.75, 3.75, 2, 1.3862939453125005">
+      <DataClassMoniker Name="/SDDDataContext/crpActivity" />
+      <nestedChildShapes>
+        <elementListCompartment Id="9dce92ab-55b4-488f-9210-558ef3ea2181" absoluteBounds="9.765, 4.21, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="7afbdf99-688a-4eac-9535-e69016a13a09" absoluteBounds="9.75, 6.75, 2, 1.3862939453125005">
+      <DataClassMoniker Name="/SDDDataContext/crpNPCCorporationDivision" />
+      <nestedChildShapes>
+        <elementListCompartment Id="8a1c5434-3115-4b6b-97f6-9ef7f7566ed8" absoluteBounds="9.765, 7.21, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="d3da9b95-e147-4ec1-a109-e7b7db47cf82" absoluteBounds="6.75, 9.75, 2, 1.1939925130208344">
+      <DataClassMoniker Name="/SDDDataContext/crpNPCCorporationResearchField" />
+      <nestedChildShapes>
+        <elementListCompartment Id="2a323e6f-4171-41eb-99ed-e5a446142a8e" absoluteBounds="6.765, 10.21, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="b0c4457a-4de3-4224-8d30-6bce9cdbbd5c" absoluteBounds="9.75, 9.75, 2, 6.1938297526041666">
+      <DataClassMoniker Name="/SDDDataContext/crpNPCCorporation" />
+      <nestedChildShapes>
+        <elementListCompartment Id="585655bc-f496-40ea-9947-d63821af25d1" absoluteBounds="9.765, 10.21, 1.9700000000000002, 5.6338297526041661" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="5e3fe74e-7683-4272-bccd-dfca3e168649" absoluteBounds="0.75, 11.75, 2, 1.1939925130208344">
+      <DataClassMoniker Name="/SDDDataContext/crpNPCCorporationTrade" />
+      <nestedChildShapes>
+        <elementListCompartment Id="a1bad2ab-23f2-4f38-9470-a4de730c10f9" absoluteBounds="0.765, 12.21, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="83bf01ca-5045-4da9-9359-84bb7bcd7b6a" absoluteBounds="3.75, 11.75, 2, 1.5785953776041666">
+      <DataClassMoniker Name="/SDDDataContext/crpNPCDivision" />
+      <nestedChildShapes>
+        <elementListCompartment Id="fee73b16-b76a-4281-a4a5-681ea8a813d1" absoluteBounds="3.765, 12.21, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="2fc65515-535f-4580-8495-74c8922eea03" absoluteBounds="12.75, 0.75, 2, 1.3862939453125003">
+      <DataClassMoniker Name="/SDDDataContext/crtCategory" />
+      <nestedChildShapes>
+        <elementListCompartment Id="87432c22-9136-469b-b63e-4e1f0aae33b3" absoluteBounds="12.765, 1.21, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="c9f76454-ceac-4129-8589-20670249999a" absoluteBounds="12.75, 3.75, 2, 2.1554996744791666">
+      <DataClassMoniker Name="/SDDDataContext/crtCertificate" />
+      <nestedChildShapes>
+        <elementListCompartment Id="6c948120-a01e-4690-95c3-a7394e00c74d" absoluteBounds="12.765, 4.21, 1.9700000000000002, 1.5954996744791665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="fc3421e2-8171-4252-80ab-e28f5ab26e6a" absoluteBounds="12.75, 6.75, 2, 1.3862939453124996">
+      <DataClassMoniker Name="/SDDDataContext/crtClass" />
+      <nestedChildShapes>
+        <elementListCompartment Id="81492e59-1c1f-4775-8175-469301bf12d7" absoluteBounds="12.765, 7.21, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="20341622-fa35-4c16-a339-be50007d7cf3" absoluteBounds="12.75, 9.75, 2, 1.5785953776041666">
+      <DataClassMoniker Name="/SDDDataContext/crtRecommendation" />
+      <nestedChildShapes>
+        <elementListCompartment Id="f6ae04d5-b95d-4856-92d9-562b751f2bda" absoluteBounds="12.765, 10.21, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="e46193c3-d335-4662-84e5-ccfc576ea014" absoluteBounds="12.75, 12.75, 2, 1.7708968098958344">
+      <DataClassMoniker Name="/SDDDataContext/crtRelationship" />
+      <nestedChildShapes>
+        <elementListCompartment Id="be60b885-8927-4a9f-b0ed-5f4f0656b017" absoluteBounds="12.765, 13.21, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="efcb77a2-4481-45fa-aa9c-80ff37a73e7e" absoluteBounds="0.75, 14.75, 2, 1.3862939453124987">
+      <DataClassMoniker Name="/SDDDataContext/dgmAttributeCategory" />
+      <nestedChildShapes>
+        <elementListCompartment Id="35dc99ec-8168-4b55-9107-67f4939f4924" absoluteBounds="0.765, 15.21, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="e4d40863-7194-4e72-9d9e-f112ee32963d" absoluteBounds="3.75, 14.75, 2, 2.9247054036458309">
+      <DataClassMoniker Name="/SDDDataContext/dgmAttributeType" />
+      <nestedChildShapes>
+        <elementListCompartment Id="cddad959-d81e-4db5-b298-560cbe90ffbd" absoluteBounds="3.765, 15.21, 1.9700000000000002, 2.364705403645833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="636ec595-0d45-43e0-9583-094ea35563ab" absoluteBounds="15.75, 0.75, 2, 6.0015283203124987">
+      <DataClassMoniker Name="/SDDDataContext/dgmEffect" />
+      <nestedChildShapes>
+        <elementListCompartment Id="f1d352a8-5916-465c-9571-6968da3d14dd" absoluteBounds="15.765, 1.21, 1.9700000000000002, 5.4415283203125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="3e63f24d-72b1-45d9-8f54-2a3aee51a091" absoluteBounds="15.75, 7.75, 2, 1.5785953776041666">
+      <DataClassMoniker Name="/SDDDataContext/dgmTypeAttribute" />
+      <nestedChildShapes>
+        <elementListCompartment Id="529b5e73-fdb9-4785-9f20-1bb102c31fc9" absoluteBounds="15.765, 8.21, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="2651ea7a-0052-4fd0-b2bc-53355d2b93fa" absoluteBounds="15.75, 10.75, 2, 1.3862939453124987">
+      <DataClassMoniker Name="/SDDDataContext/dgmTypeEffect" />
+      <nestedChildShapes>
+        <elementListCompartment Id="5293a92b-90a9-44c8-9a27-ce31774d7549" absoluteBounds="15.765, 11.21, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="94ab61ae-b9e5-4a43-b1ce-5d65d9cf9bde" absoluteBounds="12.75, 15.75, 2, 2.5401025390625005">
+      <DataClassMoniker Name="/SDDDataContext/eveGraphic" />
+      <nestedChildShapes>
+        <elementListCompartment Id="4e8b23f1-21a5-4e6d-bb95-4587d8f277bb" absoluteBounds="12.765, 16.21, 1.9700000000000002, 1.9801025390625" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="cd0706c6-f914-453d-8f15-2f424c35492f" absoluteBounds="15.75, 13.75, 2, 1.3862939453124987">
+      <DataClassMoniker Name="/SDDDataContext/eveIcon" />
+      <nestedChildShapes>
+        <elementListCompartment Id="54f9656b-c0ec-4231-9696-9c2e685ea7cd" absoluteBounds="15.765, 14.21, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="909f7efe-77d7-4c96-8a1d-8a3a553a6f62" absoluteBounds="6.75, 16.75, 2, 1.7708968098958309">
+      <DataClassMoniker Name="/SDDDataContext/eveName" />
+      <nestedChildShapes>
+        <elementListCompartment Id="ccf94ef0-54eb-490b-8e7d-e0f507df816e" absoluteBounds="6.765, 17.21, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="0262a641-c1e9-4202-a01c-47dbe4937a36" absoluteBounds="15.75, 16.75, 2, 1.5785953776041666">
+      <DataClassMoniker Name="/SDDDataContext/eveUnit" />
+      <nestedChildShapes>
+        <elementListCompartment Id="f16c07e3-51d5-49af-92ea-09b480fb8d76" absoluteBounds="15.765, 17.21, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="fcf970d7-ca32-42fb-84b9-b7ae72c5a4db" absoluteBounds="18.75, 0.75, 2, 3.3093082682291666">
+      <DataClassMoniker Name="/SDDDataContext/invBlueprintType" />
+      <nestedChildShapes>
+        <elementListCompartment Id="d3086a2a-f569-41c7-8431-e3a5a4344904" absoluteBounds="18.765, 1.21, 1.9700000000000002, 2.7493082682291665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="b6355244-24e9-4fae-bace-99aa24d50e9a" absoluteBounds="0.75, 18.75, 2, 1.7708968098958309">
+      <DataClassMoniker Name="/SDDDataContext/invCategory" />
+      <nestedChildShapes>
+        <elementListCompartment Id="914f13b7-6699-40d1-8400-b23534b01af8" absoluteBounds="0.765, 19.21, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="d3aa2a12-0ce3-4640-b02e-47724c0d94af" absoluteBounds="18.75, 5.75, 2, 1.9631982421875005">
+      <DataClassMoniker Name="/SDDDataContext/invContrabandType" />
+      <nestedChildShapes>
+        <elementListCompartment Id="3a471314-cd24-4634-a0aa-995dc879e32d" absoluteBounds="18.765, 6.21, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="b3bb0f05-f2bf-4839-81ab-ed5b93af7230" absoluteBounds="18.75, 8.75, 2, 1.1939925130208344">
+      <DataClassMoniker Name="/SDDDataContext/invControlTowerResourcePurpose" />
+      <nestedChildShapes>
+        <elementListCompartment Id="e1438643-2cee-4202-847a-db2b9e1b359e" absoluteBounds="18.765, 9.21, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="0d510abe-3f17-45a3-a406-464854c8e588" absoluteBounds="18.75, 10.75, 2, 1.9631982421874987">
+      <DataClassMoniker Name="/SDDDataContext/invControlTowerResource" />
+      <nestedChildShapes>
+        <elementListCompartment Id="3c9c98f8-150a-4c80-8b24-7e3f0330788a" absoluteBounds="18.765, 11.21, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="634bf1c6-03ae-4640-b0ce-25436c9008ac" absoluteBounds="18.75, 13.75, 2, 1.5785953776041666">
+      <DataClassMoniker Name="/SDDDataContext/invFlag" />
+      <nestedChildShapes>
+        <elementListCompartment Id="8dfcb1aa-b30f-4927-979e-2944668715db" absoluteBounds="18.765, 14.21, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="e9399fe0-8133-4b66-9532-64f5bd4fa931" absoluteBounds="18.75, 16.75, 2, 3.1170068359375023">
+      <DataClassMoniker Name="/SDDDataContext/invGroup" />
+      <nestedChildShapes>
+        <elementListCompartment Id="6b786f39-2cdc-4e37-8ac3-7d8ab0a22484" absoluteBounds="18.765, 17.21, 1.9700000000000002, 2.5570068359375" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="98c0dcf8-d157-4b4a-acc5-50b126d1344f" absoluteBounds="3.75, 19.75, 2, 1.9631982421875023">
+      <DataClassMoniker Name="/SDDDataContext/invMarketGroup" />
+      <nestedChildShapes>
+        <elementListCompartment Id="aed99616-28f8-4af0-8678-d3628626092e" absoluteBounds="3.765, 20.21, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="06f821f1-cb01-4b3d-bd71-7a24c5790b0e" absoluteBounds="6.75, 19.75, 2, 1.5785953776041666">
+      <DataClassMoniker Name="/SDDDataContext/invMetaGroup" />
+      <nestedChildShapes>
+        <elementListCompartment Id="14e44679-6640-4c72-85c9-8532ca7e8766" absoluteBounds="6.765, 20.21, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="7d7a9052-cb6d-4b64-87d1-9e1c871683c0" absoluteBounds="9.75, 19.75, 2, 1.3862939453125023">
+      <DataClassMoniker Name="/SDDDataContext/invMetaType" />
+      <nestedChildShapes>
+        <elementListCompartment Id="9d7de640-b447-4ce8-b844-31e65b0123aa" absoluteBounds="9.765, 20.21, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="5a95c13d-c3ff-427d-b1d2-b72e6211cff6" absoluteBounds="12.75, 19.75, 2, 1.3862939453125023">
+      <DataClassMoniker Name="/SDDDataContext/invTypeMaterial" />
+      <nestedChildShapes>
+        <elementListCompartment Id="7e5ef522-3d64-483d-9c4e-8770d6a59349" absoluteBounds="12.765, 20.21, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="bed72619-0fde-40e5-8a0b-31fe5b719554" absoluteBounds="15.75, 20.75, 2, 1.5785953776041666">
+      <DataClassMoniker Name="/SDDDataContext/invTypeReaction" />
+      <nestedChildShapes>
+        <elementListCompartment Id="fc08ce2d-545a-47d4-8778-1004016aa6ea" absoluteBounds="15.765, 21.21, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="0945c502-6901-480a-9030-6517b1bdf8b1" absoluteBounds="18.75, 20.75, 2, 3.8862125651041666">
+      <DataClassMoniker Name="/SDDDataContext/invType" />
+      <nestedChildShapes>
+        <elementListCompartment Id="9f186bf9-add9-46a1-8036-8df7167d3bd8" absoluteBounds="18.765, 21.21, 1.9700000000000002, 3.3262125651041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="e5695ad4-0183-416e-9a2a-60ad13e0e20c" absoluteBounds="21.75, 0.75, 2, 4.6554182942708326">
+      <DataClassMoniker Name="/SDDDataContext/mapCelestialStatistic" />
+      <nestedChildShapes>
+        <elementListCompartment Id="d8926c69-b0ea-4864-bf49-71976c72b8e9" absoluteBounds="21.765, 1.21, 1.9700000000000002, 4.095418294270833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="acb10c3f-6dff-4269-a211-37753fa63c6b" absoluteBounds="21.75, 6.75, 2, 1.5785953776041666">
+      <DataClassMoniker Name="/SDDDataContext/mapConstellationJump" />
+      <nestedChildShapes>
+        <elementListCompartment Id="e9581bca-faf8-4ac7-976f-d40e2cf55d6a" absoluteBounds="21.765, 7.21, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="a10e4812-aa24-4117-bb77-708c71018193" absoluteBounds="21.75, 9.75, 2, 3.5016097005208309">
+      <DataClassMoniker Name="/SDDDataContext/mapConstellation" />
+      <nestedChildShapes>
+        <elementListCompartment Id="454cdad2-41de-4eae-8266-4721e8a8a272" absoluteBounds="21.765, 10.21, 1.9700000000000002, 2.941609700520833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="d28b6d73-5104-4edf-bede-ab5e82d61410" absoluteBounds="21.75, 14.75, 2, 3.6939111328125005">
+      <DataClassMoniker Name="/SDDDataContext/mapDenormalize" />
+      <nestedChildShapes>
+        <elementListCompartment Id="40c160c2-e7f6-4755-9e88-90dd10868d3c" absoluteBounds="21.765, 15.21, 1.9700000000000002, 3.1339111328125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="2b409d8a-ec67-442d-82cb-0a5139bbf203" absoluteBounds="21.75, 19.75, 2, 1.1939925130208309">
+      <DataClassMoniker Name="/SDDDataContext/mapJump" />
+      <nestedChildShapes>
+        <elementListCompartment Id="fd4aadd6-3e87-4e9a-aa39-6f71579956c8" absoluteBounds="21.765, 20.21, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="a831966b-6c98-4acf-8c69-44212807333a" absoluteBounds="21.75, 21.75, 2, 2.7324039713541666">
+      <DataClassMoniker Name="/SDDDataContext/mapLandmark" />
+      <nestedChildShapes>
+        <elementListCompartment Id="ce7a4a14-46e8-458c-a822-0c4822320843" absoluteBounds="21.765, 22.21, 1.9700000000000002, 2.1724039713541665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="8e2752cb-d091-436d-a5d0-933d75305431" absoluteBounds="0.75, 22.75, 2, 1.1939925130208309">
+      <DataClassMoniker Name="/SDDDataContext/mapLocationScene" />
+      <nestedChildShapes>
+        <elementListCompartment Id="44091df7-af08-4847-9b5e-73220327f123" absoluteBounds="0.765, 23.21, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="548cca45-8884-408d-b71d-1b46768ae198" absoluteBounds="3.75, 22.75, 2, 1.1939925130208309">
+      <DataClassMoniker Name="/SDDDataContext/mapLocationWormholeClass" />
+      <nestedChildShapes>
+        <elementListCompartment Id="2693f433-2795-4adb-83b1-497976f05044" absoluteBounds="3.765, 23.21, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="c5bf78f4-5754-4246-820e-bb4da733bdcd" absoluteBounds="6.75, 22.75, 2, 1.1939925130208309">
+      <DataClassMoniker Name="/SDDDataContext/mapRegionJump" />
+      <nestedChildShapes>
+        <elementListCompartment Id="d719168f-5a32-484f-bd1f-c70c2807aad7" absoluteBounds="6.765, 23.21, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="7cadc538-9d60-4342-8912-b03b876dc890" absoluteBounds="9.75, 22.75, 2, 3.3093082682291666">
+      <DataClassMoniker Name="/SDDDataContext/mapRegion" />
+      <nestedChildShapes>
+        <elementListCompartment Id="cb5ac4fd-cfd9-4233-ae53-2cb3662e27ed" absoluteBounds="9.765, 23.21, 1.9700000000000002, 2.7493082682291665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="bf3ddea7-c883-4ab1-8f92-1f84a369bb70" absoluteBounds="12.75, 23.75, 2, 1.9631982421875023">
+      <DataClassMoniker Name="/SDDDataContext/mapSolarSystemJump" />
+      <nestedChildShapes>
+        <elementListCompartment Id="276b6fe3-d235-498f-85e9-05fa1919cfec" absoluteBounds="12.765, 24.21, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="df39c0a5-37d6-4fd5-9cf0-4b58e3fbd030" absoluteBounds="24.75, 0.75, 2, 5.8092268880208326">
+      <DataClassMoniker Name="/SDDDataContext/mapSolarSystem" />
+      <nestedChildShapes>
+        <elementListCompartment Id="05cecb39-adbe-4d19-8e09-1661eb7fb1e8" absoluteBounds="24.765, 1.21, 1.9700000000000002, 5.249226888020833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="42f9eff3-1a13-42a2-a19c-a1a03372d258" absoluteBounds="0.75, 24.75, 2, 3.1170068359375023">
+      <DataClassMoniker Name="/SDDDataContext/mapUniverse" />
+      <nestedChildShapes>
+        <elementListCompartment Id="2693a700-c05e-4d20-b891-dd169a60b467" absoluteBounds="0.765, 25.21, 1.9700000000000002, 2.5570068359375" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="b555c0da-c840-43d3-bba8-b5dcd53dd5ea" absoluteBounds="3.75, 24.75, 2, 1.3862939453125023">
+      <DataClassMoniker Name="/SDDDataContext/planetSchematic" />
+      <nestedChildShapes>
+        <elementListCompartment Id="215ffe38-cd58-430c-83da-a931b6e5927c" absoluteBounds="3.765, 25.21, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="547d6629-50d9-473c-9da9-f3f1bb47bd27" absoluteBounds="24.75, 7.75, 2, 1.1939925130208344">
+      <DataClassMoniker Name="/SDDDataContext/planetSchematicsPinMap" />
+      <nestedChildShapes>
+        <elementListCompartment Id="10cb28aa-60a7-4731-a938-5389ef2e28ad" absoluteBounds="24.765, 8.21, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="931a5230-e216-48ae-a4cb-231728419f88" absoluteBounds="24.75, 9.75, 2, 1.5785953776041666">
+      <DataClassMoniker Name="/SDDDataContext/planetSchematicsTypeMap" />
+      <nestedChildShapes>
+        <elementListCompartment Id="ca9ce4f7-3a0e-41e3-90b3-cb9d9701dadb" absoluteBounds="24.765, 10.21, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="8b244a35-b619-4af4-aed9-caaaf00457df" absoluteBounds="24.75, 12.75, 2, 1.7708968098958344">
+      <DataClassMoniker Name="/SDDDataContext/ramActivity" />
+      <nestedChildShapes>
+        <elementListCompartment Id="2daf0d2a-d3b0-4af3-a1fb-710159c3544a" absoluteBounds="24.765, 13.21, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="15e76705-ee28-4173-9407-6f14cd9c240d" absoluteBounds="24.75, 15.75, 2, 4.0785139973958309">
+      <DataClassMoniker Name="/SDDDataContext/ramAssemblyLine" />
+      <nestedChildShapes>
+        <elementListCompartment Id="b2fbc034-34f8-4189-96cf-6b6bdae078e1" absoluteBounds="24.765, 16.21, 1.9700000000000002, 3.518513997395833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="8512d401-bbaa-4045-b5d2-b410e9a735a2" absoluteBounds="24.75, 20.75, 2, 2.1554996744791666">
+      <DataClassMoniker Name="/SDDDataContext/ramAssemblyLineStation" />
+      <nestedChildShapes>
+        <elementListCompartment Id="07e13015-0202-4b0d-a706-3d7a05341cb8" absoluteBounds="24.765, 21.21, 1.9700000000000002, 1.5954996744791665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="4a34f2e4-c3a1-435f-867d-4b4cd6ffa106" absoluteBounds="24.75, 23.75, 2, 1.5785953776041666">
+      <DataClassMoniker Name="/SDDDataContext/ramAssemblyLineTypeDetailPerCategory" />
+      <nestedChildShapes>
+        <elementListCompartment Id="e0bd9fff-43ed-4ddd-ab60-d4094c2eeb50" absoluteBounds="24.765, 24.21, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="5bea8557-b3fe-4e87-907b-557791d515f5" absoluteBounds="15.75, 25.75, 2, 1.5785953776041666">
+      <DataClassMoniker Name="/SDDDataContext/ramAssemblyLineTypeDetailPerGroup" />
+      <nestedChildShapes>
+        <elementListCompartment Id="f211baf7-1dd3-4eeb-b47a-7ec78d7938a1" absoluteBounds="15.765, 26.21, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="3335a229-db51-41f2-b019-3929a262469c" absoluteBounds="18.75, 25.75, 2, 2.3478011067708309">
+      <DataClassMoniker Name="/SDDDataContext/ramAssemblyLineType" />
+      <nestedChildShapes>
+        <elementListCompartment Id="3f157cf1-fe56-410c-b5f4-b58a76d4f771" absoluteBounds="18.765, 26.21, 1.9700000000000002, 1.7878011067708335" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="13ce0f43-0f9a-4899-96dd-bce1f4573280" absoluteBounds="21.75, 26.75, 2, 1.3862939453125023">
+      <DataClassMoniker Name="/SDDDataContext/ramInstallationTypeContent" />
+      <nestedChildShapes>
+        <elementListCompartment Id="6589a831-e5fa-4c9d-8d90-0a1fc379c0ee" absoluteBounds="21.765, 27.21, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="95ae83f9-804e-4fda-94e0-f0e77cc64c6d" absoluteBounds="24.75, 26.75, 2, 1.9631982421875023">
+      <DataClassMoniker Name="/SDDDataContext/ramTypeRequirement" />
+      <nestedChildShapes>
+        <elementListCompartment Id="4f2867da-0f98-4a16-8448-ac189719aa1d" absoluteBounds="24.765, 27.21, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="35061b46-a4d8-4aad-a555-7ebd6e7d8845" absoluteBounds="27.75, 0.75, 2, 3.5016097005208326">
+      <DataClassMoniker Name="/SDDDataContext/staOperation" />
+      <nestedChildShapes>
+        <elementListCompartment Id="8ef6caca-2f96-4ea2-aa16-8f1dcf028b36" absoluteBounds="27.765, 1.21, 1.9700000000000002, 2.941609700520833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="ce1bc47f-dc21-4361-abe8-34f5b6fe100c" absoluteBounds="3.75, 27.75, 2, 1.1939925130208309">
+      <DataClassMoniker Name="/SDDDataContext/staOperationService" />
+      <nestedChildShapes>
+        <elementListCompartment Id="504dd129-dc6a-4366-86f6-29277ff3d167" absoluteBounds="3.765, 28.21, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="624f4d0f-655c-4d14-8abc-bd88e7f9a072" absoluteBounds="27.75, 5.75, 2, 1.3862939453125005">
+      <DataClassMoniker Name="/SDDDataContext/staService" />
+      <nestedChildShapes>
+        <elementListCompartment Id="99c02fc5-010c-49f7-ab69-4ce961d724e6" absoluteBounds="27.765, 6.21, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="a483a7f8-176d-4aa8-a6e3-40aaddea81bd" absoluteBounds="6.75, 27.75, 2, 4.2708154296875023">
+      <DataClassMoniker Name="/SDDDataContext/staStation" />
+      <nestedChildShapes>
+        <elementListCompartment Id="b8e08cc8-992b-44cb-bafa-6e1ed4c6c5ee" absoluteBounds="6.765, 28.21, 1.9700000000000002, 3.7108154296875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="70e56a5f-9f6e-482e-826c-ade50cf6203f" absoluteBounds="27.75, 8.75, 2, 2.9247054036458309">
+      <DataClassMoniker Name="/SDDDataContext/staStationType" />
+      <nestedChildShapes>
+        <elementListCompartment Id="d2d034a4-ff28-4a08-8143-81d3939f7b83" absoluteBounds="27.765, 9.21, 1.9700000000000002, 2.364705403645833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="6cc7fa93-d46e-4460-9ac1-fb0c8df5a313" absoluteBounds="9.75, 27.75, 2, 1.7708968098958309">
+      <DataClassMoniker Name="/SDDDataContext/trnTranslationColumn" />
+      <nestedChildShapes>
+        <elementListCompartment Id="6d4835f3-f9b8-4c77-9a03-0bb6fa897cdf" absoluteBounds="9.765, 28.21, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+  </nestedChildShapes>
+</ordesignerObjectsDiagram>

@@ -6,6 +6,7 @@ using DatadumpToMongo;
 
 namespace DatadumpMain
 {
+    
     class Program
     {
         static void Main(string[] args)
@@ -19,7 +20,8 @@ namespace DatadumpMain
             dd.Debug = true;
 
             // Run test!
-            dd.TestDumper(1000000);
+            //dd.TestDumper(1000000);
+            dd.TestDumperMssql();
 
             // Wait for user input before exit!
             Console.ReadLine();

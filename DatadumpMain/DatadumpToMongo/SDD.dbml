@@ -1,0 +1,824 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="evedb" Class="SDDDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=beanie\sqlexpress;Initial Catalog=evedb;Integrated Security=True" SettingsObjectName="DatadumpToMongo.Properties.Settings" SettingsPropertyName="evedbConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.agtAgents" Member="agtAgents">
+    <Type Name="agtAgent">
+      <Column Name="agentID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="divisionID" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+      <Column Name="corporationID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="locationID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="[level]" Member="level" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+      <Column Name="quality" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="agentTypeID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.trnTranslations" Member="trnTranslations">
+    <Type Name="trnTranslation">
+      <Column Name="tcID" Type="System.Int16" DbType="SmallInt NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="keyID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="languageID" Type="System.String" DbType="Char(2) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="text" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.agtAgentTypes" Member="agtAgentTypes">
+    <Type Name="agtAgentType">
+      <Column Name="agentTypeID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="agentType" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.agtConfig" Member="agtConfigs">
+    <Type Name="agtConfig">
+      <Column Name="agentID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="k" Type="System.String" DbType="VarChar(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="v" Type="System.String" DbType="VarChar(4000)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.agtResearchAgents" Member="agtResearchAgents">
+    <Type Name="agtResearchAgent">
+      <Column Name="agentID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="typeID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.chrAncestries" Member="chrAncestries">
+    <Type Name="chrAncestry">
+      <Column Name="ancestryID" Type="System.Byte" DbType="TinyInt NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="ancestryName" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="bloodlineID" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+      <Column Name="description" Type="System.String" DbType="NVarChar(1000)" CanBeNull="true" />
+      <Column Name="perception" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+      <Column Name="willpower" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+      <Column Name="charisma" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+      <Column Name="memory" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+      <Column Name="intelligence" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+      <Column Name="iconID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="shortDescription" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.chrAttributes" Member="chrAttributes">
+    <Type Name="chrAttribute">
+      <Column Name="attributeID" Type="System.Byte" DbType="TinyInt NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="attributeName" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="description" Type="System.String" DbType="VarChar(1000)" CanBeNull="true" />
+      <Column Name="iconID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="shortDescription" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+      <Column Name="notes" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.chrBloodlines" Member="chrBloodlines">
+    <Type Name="chrBloodline">
+      <Column Name="bloodlineID" Type="System.Byte" DbType="TinyInt NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="bloodlineName" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="raceID" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+      <Column Name="description" Type="System.String" DbType="NVarChar(1000)" CanBeNull="true" />
+      <Column Name="maleDescription" Type="System.String" DbType="NVarChar(1000)" CanBeNull="true" />
+      <Column Name="femaleDescription" Type="System.String" DbType="NVarChar(1000)" CanBeNull="true" />
+      <Column Name="shipTypeID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="corporationID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="perception" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+      <Column Name="willpower" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+      <Column Name="charisma" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+      <Column Name="memory" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+      <Column Name="intelligence" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+      <Column Name="iconID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="shortDescription" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+      <Column Name="shortMaleDescription" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+      <Column Name="shortFemaleDescription" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.chrFactions" Member="chrFactions">
+    <Type Name="chrFaction">
+      <Column Name="factionID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="factionName" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="description" Type="System.String" DbType="VarChar(1000)" CanBeNull="true" />
+      <Column Name="raceIDs" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="solarSystemID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="corporationID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="sizeFactor" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="stationCount" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="stationSystemCount" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="militiaCorporationID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="iconID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.chrRaces" Member="chrRaces">
+    <Type Name="chrRace">
+      <Column Name="raceID" Type="System.Byte" DbType="TinyInt NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="raceName" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="description" Type="System.String" DbType="VarChar(1000)" CanBeNull="true" />
+      <Column Name="iconID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="shortDescription" Type="System.String" DbType="VarChar(500)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.crpActivities" Member="crpActivities">
+    <Type Name="crpActivity">
+      <Column Name="activityID" Type="System.Byte" DbType="TinyInt NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="activityName" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="description" Type="System.String" DbType="NVarChar(1000)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.crpNPCCorporationDivisions" Member="crpNPCCorporationDivisions">
+    <Type Name="crpNPCCorporationDivision">
+      <Column Name="corporationID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="divisionID" Type="System.Byte" DbType="TinyInt NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="size" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.crpNPCCorporationResearchFields" Member="crpNPCCorporationResearchFields">
+    <Type Name="crpNPCCorporationResearchField">
+      <Column Name="skillID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="corporationID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.crpNPCCorporations" Member="crpNPCCorporations">
+    <Type Name="crpNPCCorporation">
+      <Column Name="corporationID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="size" Type="System.Char" DbType="Char(1)" CanBeNull="true" />
+      <Column Name="extent" Type="System.Char" DbType="Char(1)" CanBeNull="true" />
+      <Column Name="solarSystemID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="investorID1" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="investorShares1" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+      <Column Name="investorID2" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="investorShares2" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+      <Column Name="investorID3" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="investorShares3" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+      <Column Name="investorID4" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="investorShares4" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+      <Column Name="friendID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="enemyID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="publicShares" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="initialPrice" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="minSecurity" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="scattered" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="fringe" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+      <Column Name="corridor" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+      <Column Name="hub" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+      <Column Name="border" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+      <Column Name="factionID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="sizeFactor" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="stationCount" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="stationSystemCount" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="description" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
+      <Column Name="iconID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.crpNPCCorporationTrades" Member="crpNPCCorporationTrades">
+    <Type Name="crpNPCCorporationTrade">
+      <Column Name="corporationID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="typeID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.crpNPCDivisions" Member="crpNPCDivisions">
+    <Type Name="crpNPCDivision">
+      <Column Name="divisionID" Type="System.Byte" DbType="TinyInt NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="divisionName" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="description" Type="System.String" DbType="NVarChar(1000)" CanBeNull="true" />
+      <Column Name="leaderType" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.crtCategories" Member="crtCategories">
+    <Type Name="crtCategory">
+      <Column Name="categoryID" Type="System.Byte" DbType="TinyInt NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="description" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+      <Column Name="categoryName" Type="System.String" DbType="NVarChar(256)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.crtCertificates" Member="crtCertificates">
+    <Type Name="crtCertificate">
+      <Column Name="certificateID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="categoryID" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+      <Column Name="classID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="grade" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+      <Column Name="corpID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="iconID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="description" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.crtClasses" Member="crtClasses">
+    <Type Name="crtClass">
+      <Column Name="classID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="description" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+      <Column Name="className" Type="System.String" DbType="NVarChar(256)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.crtRecommendations" Member="crtRecommendations">
+    <Type Name="crtRecommendation">
+      <Column Name="recommendationID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="shipTypeID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="certificateID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="recommendationLevel" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.crtRelationships" Member="crtRelationships">
+    <Type Name="crtRelationship">
+      <Column Name="relationshipID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="parentID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="parentTypeID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="parentLevel" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+      <Column Name="childID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.dgmAttributeCategories" Member="dgmAttributeCategories">
+    <Type Name="dgmAttributeCategory">
+      <Column Name="categoryID" Type="System.Byte" DbType="TinyInt NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="categoryName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="categoryDescription" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.dgmAttributeTypes" Member="dgmAttributeTypes">
+    <Type Name="dgmAttributeType">
+      <Column Name="attributeID" Type="System.Int16" DbType="SmallInt NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="attributeName" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="description" Type="System.String" DbType="VarChar(1000)" CanBeNull="true" />
+      <Column Name="iconID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="defaultValue" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="published" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="displayName" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="unitID" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+      <Column Name="stackable" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="highIsGood" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="categoryID" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.dgmEffects" Member="dgmEffects">
+    <Type Name="dgmEffect">
+      <Column Name="effectID" Type="System.Int16" DbType="SmallInt NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="effectName" Type="System.String" DbType="VarChar(400)" CanBeNull="true" />
+      <Column Name="effectCategory" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="preExpression" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="postExpression" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="description" Type="System.String" DbType="VarChar(1000)" CanBeNull="true" />
+      <Column Name="guid" Type="System.String" DbType="VarChar(60)" CanBeNull="true" />
+      <Column Name="iconID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="isOffensive" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="isAssistance" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="durationAttributeID" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="trackingSpeedAttributeID" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="dischargeAttributeID" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="rangeAttributeID" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="falloffAttributeID" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="disallowAutoRepeat" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="published" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="displayName" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="isWarpSafe" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="rangeChance" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="electronicChance" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="propulsionChance" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="distribution" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+      <Column Name="sfxName" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="npcUsageChanceAttributeID" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="npcActivationChanceAttributeID" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="fittingUsageChanceAttributeID" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.dgmTypeAttributes" Member="dgmTypeAttributes">
+    <Type Name="dgmTypeAttribute">
+      <Column Name="typeID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="attributeID" Type="System.Int16" DbType="SmallInt NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="valueInt" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="valueFloat" Type="System.Double" DbType="Float" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.dgmTypeEffects" Member="dgmTypeEffects">
+    <Type Name="dgmTypeEffect">
+      <Column Name="typeID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="effectID" Type="System.Int16" DbType="SmallInt NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="isDefault" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.eveGraphics" Member="eveGraphics">
+    <Type Name="eveGraphic">
+      <Column Name="graphicID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="graphicFile" Type="System.String" DbType="VarChar(500) NOT NULL" CanBeNull="false" />
+      <Column Name="description" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="obsolete" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="graphicType" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="collidable" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="explosionID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="directoryID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="graphicName" Type="System.String" DbType="NVarChar(64) NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.eveIcons" Member="eveIcons">
+    <Type Name="eveIcon">
+      <Column Name="iconID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="iconFile" Type="System.String" DbType="VarChar(500) NOT NULL" CanBeNull="false" />
+      <Column Name="description" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.eveNames" Member="eveNames">
+    <Type Name="eveName">
+      <Column Name="itemID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="itemName" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="categoryID" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+      <Column Name="groupID" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="typeID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.eveUnits" Member="eveUnits">
+    <Type Name="eveUnit">
+      <Column Name="unitID" Type="System.Byte" DbType="TinyInt NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="unitName" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="displayName" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="description" Type="System.String" DbType="VarChar(1000)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.invBlueprintTypes" Member="invBlueprintTypes">
+    <Type Name="invBlueprintType">
+      <Column Name="blueprintTypeID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="parentBlueprintTypeID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="productTypeID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="productionTime" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="techLevel" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="researchProductivityTime" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="researchMaterialTime" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="researchCopyTime" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="researchTechTime" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="productivityModifier" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="materialModifier" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="wasteFactor" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="maxProductionLimit" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.invCategories" Member="invCategories">
+    <Type Name="invCategory">
+      <Column Name="categoryID" Type="System.Byte" DbType="TinyInt NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="categoryName" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="description" Type="System.String" DbType="NVarChar(3000)" CanBeNull="true" />
+      <Column Name="iconID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="published" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.invContrabandTypes" Member="invContrabandTypes">
+    <Type Name="invContrabandType">
+      <Column Name="factionID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="typeID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="standingLoss" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="confiscateMinSec" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="fineByValue" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="attackMinSec" Type="System.Double" DbType="Float" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.invControlTowerResourcePurposes" Member="invControlTowerResourcePurposes">
+    <Type Name="invControlTowerResourcePurpose">
+      <Column Name="purpose" Type="System.Byte" DbType="TinyInt NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="purposeText" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.invControlTowerResources" Member="invControlTowerResources">
+    <Type Name="invControlTowerResource">
+      <Column Name="controlTowerTypeID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="resourceTypeID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="purpose" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+      <Column Name="quantity" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="minSecurityLevel" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="factionID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.invFlags" Member="invFlags">
+    <Type Name="invFlag">
+      <Column Name="flagID" Type="System.Int16" DbType="SmallInt NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="flagName" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="flagText" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="orderID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.invGroups" Member="invGroups">
+    <Type Name="invGroup">
+      <Column Name="groupID" Type="System.Int16" DbType="SmallInt NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="categoryID" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+      <Column Name="groupName" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="description" Type="System.String" DbType="NVarChar(3000)" CanBeNull="true" />
+      <Column Name="iconID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="useBasePrice" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="allowManufacture" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="allowRecycler" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="anchored" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="anchorable" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="fittableNonSingleton" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="published" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.invMarketGroups" Member="invMarketGroups">
+    <Type Name="invMarketGroup">
+      <Column Name="marketGroupID" Type="System.Int16" DbType="SmallInt NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="parentGroupID" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="marketGroupName" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="description" Type="System.String" DbType="NVarChar(3000)" CanBeNull="true" />
+      <Column Name="iconID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="hasTypes" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.invMetaGroups" Member="invMetaGroups">
+    <Type Name="invMetaGroup">
+      <Column Name="metaGroupID" Type="System.Int16" DbType="SmallInt NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="metaGroupName" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="description" Type="System.String" DbType="NVarChar(1000)" CanBeNull="true" />
+      <Column Name="iconID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.invMetaTypes" Member="invMetaTypes">
+    <Type Name="invMetaType">
+      <Column Name="typeID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="parentTypeID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="metaGroupID" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.invTypeMaterials" Member="invTypeMaterials">
+    <Type Name="invTypeMaterial">
+      <Column Name="typeID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="materialTypeID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="quantity" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.invTypeReactions" Member="invTypeReactions">
+    <Type Name="invTypeReaction">
+      <Column Name="reactionTypeID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="input" Type="System.Boolean" DbType="Bit NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="typeID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="quantity" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.invTypes" Member="invTypes">
+    <Type Name="invType">
+      <Column Name="typeID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="groupID" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="typeName" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="description" Type="System.String" DbType="NVarChar(3000)" CanBeNull="true" />
+      <Column Name="graphicID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="radius" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="mass" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="volume" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="capacity" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="portionSize" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="raceID" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+      <Column Name="basePrice" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="published" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="marketGroupID" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="chanceOfDuplicating" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="iconID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.mapCelestialStatistics" Member="mapCelestialStatistics">
+    <Type Name="mapCelestialStatistic">
+      <Column Name="celestialID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="temperature" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="spectralClass" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="luminosity" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="age" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="life" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="orbitRadius" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="eccentricity" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="massDust" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="massGas" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="fragmented" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="density" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="surfaceGravity" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="escapeVelocity" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="orbitPeriod" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="rotationRate" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="locked" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="pressure" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="radius" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="mass" Type="System.Double" DbType="Float" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.mapConstellationJumps" Member="mapConstellationJumps">
+    <Type Name="mapConstellationJump">
+      <Column Name="fromRegionID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="fromConstellationID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="toConstellationID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="toRegionID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.mapConstellations" Member="mapConstellations">
+    <Type Name="mapConstellation">
+      <Column Name="regionID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="constellationID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="constellationName" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="x" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="y" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="z" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="xMin" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="xMax" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="yMin" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="yMax" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="zMin" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="zMax" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="factionID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="radius" Type="System.Double" DbType="Float" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.mapDenormalize" Member="mapDenormalizes">
+    <Type Name="mapDenormalize">
+      <Column Name="itemID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="typeID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="groupID" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="solarSystemID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="constellationID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="regionID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="orbitID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="x" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="y" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="z" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="radius" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="itemName" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="security" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="celestialIndex" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+      <Column Name="orbitIndex" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.mapJumps" Member="mapJumps">
+    <Type Name="mapJump">
+      <Column Name="stargateID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="celestialID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.mapLandmarks" Member="mapLandmarks">
+    <Type Name="mapLandmark">
+      <Column Name="landmarkID" Type="System.Int16" DbType="SmallInt NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="landmarkName" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="description" Type="System.String" DbType="VarChar(7000)" CanBeNull="true" />
+      <Column Name="locationID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="x" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="y" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="z" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="radius" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="iconID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="importance" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.mapLocationScenes" Member="mapLocationScenes">
+    <Type Name="mapLocationScene">
+      <Column Name="locationID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="sceneID" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.mapLocationWormholeClasses" Member="mapLocationWormholeClasses">
+    <Type Name="mapLocationWormholeClass">
+      <Column Name="locationID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="wormholeClassID" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.mapRegionJumps" Member="mapRegionJumps">
+    <Type Name="mapRegionJump">
+      <Column Name="fromRegionID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="toRegionID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.mapRegions" Member="mapRegions">
+    <Type Name="mapRegion">
+      <Column Name="regionID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="regionName" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="x" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="y" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="z" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="xMin" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="xMax" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="yMin" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="yMax" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="zMin" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="zMax" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="factionID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="radius" Type="System.Double" DbType="Float" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.mapSolarSystemJumps" Member="mapSolarSystemJumps">
+    <Type Name="mapSolarSystemJump">
+      <Column Name="fromRegionID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="fromConstellationID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="fromSolarSystemID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="toSolarSystemID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="toConstellationID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="toRegionID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.mapSolarSystems" Member="mapSolarSystems">
+    <Type Name="mapSolarSystem">
+      <Column Name="regionID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="constellationID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="solarSystemID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="solarSystemName" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="x" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="y" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="z" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="xMin" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="xMax" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="yMin" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="yMax" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="zMin" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="zMax" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="luminosity" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="border" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="fringe" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="corridor" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="hub" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="international" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="regional" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="constellation" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="security" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="factionID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="radius" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="sunTypeID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="securityClass" Type="System.String" DbType="VarChar(2)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.mapUniverse" Member="mapUniverses">
+    <Type Name="mapUniverse">
+      <Column Name="universeID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="universeName" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="x" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="y" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="z" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="xMin" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="xMax" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="yMin" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="yMax" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="zMin" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="zMax" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="radius" Type="System.Double" DbType="Float" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.planetSchematics" Member="planetSchematics">
+    <Type Name="planetSchematic">
+      <Column Name="schematicID" Type="System.Int16" DbType="SmallInt NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="schematicName" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="cycleTime" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.planetSchematicsPinMap" Member="planetSchematicsPinMaps">
+    <Type Name="planetSchematicsPinMap">
+      <Column Name="schematicID" Type="System.Int16" DbType="SmallInt NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="pinTypeID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.planetSchematicsTypeMap" Member="planetSchematicsTypeMaps">
+    <Type Name="planetSchematicsTypeMap">
+      <Column Name="schematicID" Type="System.Int16" DbType="SmallInt NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="typeID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="quantity" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="isInput" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ramActivities" Member="ramActivities">
+    <Type Name="ramActivity">
+      <Column Name="activityID" Type="System.Byte" DbType="TinyInt NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="activityName" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="iconNo" Type="System.String" DbType="VarChar(5)" CanBeNull="true" />
+      <Column Name="description" Type="System.String" DbType="NVarChar(1000)" CanBeNull="true" />
+      <Column Name="published" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ramAssemblyLines" Member="ramAssemblyLines">
+    <Type Name="ramAssemblyLine">
+      <Column Name="assemblyLineID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="assemblyLineTypeID" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+      <Column Name="containerID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="nextFreeTime" Type="System.DateTime" DbType="SmallDateTime" CanBeNull="true" />
+      <Column Name="UIGroupingID" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+      <Column Name="costInstall" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="costPerHour" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="restrictionMask" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+      <Column Name="discountPerGoodStandingPoint" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="surchargePerBadStandingPoint" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="minimumStanding" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="minimumCharSecurity" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="minimumCorpSecurity" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="maximumCharSecurity" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="maximumCorpSecurity" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="ownerID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="activityID" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ramAssemblyLineStations" Member="ramAssemblyLineStations">
+    <Type Name="ramAssemblyLineStation">
+      <Column Name="stationID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="assemblyLineTypeID" Type="System.Byte" DbType="TinyInt NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="quantity" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+      <Column Name="stationTypeID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ownerID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="solarSystemID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="regionID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ramAssemblyLineTypeDetailPerCategory" Member="ramAssemblyLineTypeDetailPerCategories">
+    <Type Name="ramAssemblyLineTypeDetailPerCategory">
+      <Column Name="assemblyLineTypeID" Type="System.Byte" DbType="TinyInt NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="categoryID" Type="System.Byte" DbType="TinyInt NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="timeMultiplier" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="materialMultiplier" Type="System.Double" DbType="Float" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ramAssemblyLineTypeDetailPerGroup" Member="ramAssemblyLineTypeDetailPerGroups">
+    <Type Name="ramAssemblyLineTypeDetailPerGroup">
+      <Column Name="assemblyLineTypeID" Type="System.Byte" DbType="TinyInt NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="groupID" Type="System.Int16" DbType="SmallInt NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="timeMultiplier" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="materialMultiplier" Type="System.Double" DbType="Float" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ramAssemblyLineTypes" Member="ramAssemblyLineTypes">
+    <Type Name="ramAssemblyLineType">
+      <Column Name="assemblyLineTypeID" Type="System.Byte" DbType="TinyInt NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="assemblyLineTypeName" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="description" Type="System.String" DbType="NVarChar(1000)" CanBeNull="true" />
+      <Column Name="baseTimeMultiplier" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="baseMaterialMultiplier" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="volume" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="activityID" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+      <Column Name="minCostPerHour" Type="System.Double" DbType="Float" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ramInstallationTypeContents" Member="ramInstallationTypeContents">
+    <Type Name="ramInstallationTypeContent">
+      <Column Name="installationTypeID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="assemblyLineTypeID" Type="System.Byte" DbType="TinyInt NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="quantity" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ramTypeRequirements" Member="ramTypeRequirements">
+    <Type Name="ramTypeRequirement">
+      <Column Name="typeID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="activityID" Type="System.Byte" DbType="TinyInt NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="requiredTypeID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="quantity" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="damagePerJob" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="recycle" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.staOperations" Member="staOperations">
+    <Type Name="staOperation">
+      <Column Name="activityID" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+      <Column Name="operationID" Type="System.Byte" DbType="TinyInt NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="operationName" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="description" Type="System.String" DbType="NVarChar(1000)" CanBeNull="true" />
+      <Column Name="fringe" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+      <Column Name="corridor" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+      <Column Name="hub" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+      <Column Name="border" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+      <Column Name="ratio" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+      <Column Name="caldariStationTypeID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="minmatarStationTypeID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="amarrStationTypeID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="gallenteStationTypeID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="joveStationTypeID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.staOperationServices" Member="staOperationServices">
+    <Type Name="staOperationService">
+      <Column Name="operationID" Type="System.Byte" DbType="TinyInt NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="serviceID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.staServices" Member="staServices">
+    <Type Name="staService">
+      <Column Name="serviceID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="serviceName" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="description" Type="System.String" DbType="NVarChar(1000)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.staStations" Member="staStations">
+    <Type Name="staStation">
+      <Column Name="stationID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="security" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="dockingCostPerVolume" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="maxShipVolumeDockable" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="officeRentalCost" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="operationID" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+      <Column Name="stationTypeID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="corporationID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="solarSystemID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="constellationID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="regionID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="stationName" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="x" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="y" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="z" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="reprocessingEfficiency" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="reprocessingStationsTake" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="reprocessingHangarFlag" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.staStationTypes" Member="staStationTypes">
+    <Type Name="staStationType">
+      <Column Name="stationTypeID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="dockEntryX" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="dockEntryY" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="dockEntryZ" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="dockOrientationX" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="dockOrientationY" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="dockOrientationZ" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="operationID" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+      <Column Name="officeSlots" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+      <Column Name="reprocessingEfficiency" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="conquerable" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.trnTranslationColumns" Member="trnTranslationColumns">
+    <Type Name="trnTranslationColumn">
+      <Column Name="tcGroupID" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="tcID" Type="System.Int16" DbType="SmallInt NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="tableName" Type="System.String" DbType="NVarChar(256) NOT NULL" CanBeNull="false" />
+      <Column Name="columnName" Type="System.String" DbType="NVarChar(128) NOT NULL" CanBeNull="false" />
+      <Column Name="masterID" Type="System.String" DbType="NVarChar(128)" CanBeNull="true" />
+    </Type>
+  </Table>
+</Database>

@@ -5,6 +5,7 @@ using System.Text;
 using MongoDB.Driver;
 using MongoDB.Driver.Builders;
 using MongoDB.Bson;
+using MongoDB.Bson.IO;
 
 namespace DatadumpToMongo
 {
@@ -14,6 +15,50 @@ namespace DatadumpToMongo
     /// </summary>
     public class Datadumper
     {
+        /// <summary>
+        /// Categories as taken from invCategories
+        /// </summary>
+        enum CategoryTypes
+        {
+            _System = 0,
+            Owner=1,
+            Celestial=2,
+            Station=3,
+            Material=4,
+            Accessories=5,
+            Ship=6,
+            Module=7,
+            Charge=8,
+            Blueprint=9,
+            Trading=10,
+            Entity=11,
+            Bonus=12,
+            Skill=16,
+            Commodity=17,
+            Drone=18,
+            Implant=20,
+            Deployable=22,
+            Structure=23,
+            Reaction=24,
+            Asteroid=25,
+            Interiors=26,
+            Placeables=27,
+            Abstract=29,
+            Subsystem=32,
+            Ancient_Relics=34,
+            Decryptors=35,
+            Infrastructure_Upgrades=39,
+            Sovereignty_Structures=40,
+            Planetary_Interaction=41,
+            Planetary_Resources=42,
+            Planetary_Commodities=43,
+        }
+
+        /// <summary>
+        /// Define settings for the JSON output (debug, yay!)
+        /// </summary>
+        JsonWriterSettings set = new JsonWriterSettings() { OutputMode = JsonOutputMode.JavaScript, NewLineChars = "\r\n", Indent = true, IndentChars = "  " };
+
         /// <summary>
         /// Connectionstring for mongo
         /// </summary>
@@ -37,6 +82,7 @@ namespace DatadumpToMongo
         /// </summary>
         public bool IsMssqlConnected { get; private set; }
 
+        #region Mongospecific stuff
         /// <summary>
         /// MongoDB server instance
         /// </summary>
@@ -52,6 +98,11 @@ namespace DatadumpToMongo
 
         private String mongoDatabaseName = "SomeDatabase";
         private String mongoCollectionName = "SomeCollection";
+        #endregion
+
+        #region Mssql specific stuff
+        private SDDDataContext dataContext;
+        #endregion
 
         public Datadumper(String mongoConnString, String mssqlConnString)
         {
@@ -64,11 +115,20 @@ namespace DatadumpToMongo
         }
 
         /// <summary>
+        /// Create a new datacontext object and use the given connectionstring
+        /// </summary>
+        private void CreateMssqlContext()
+        {
+            this.dataContext = new SDDDataContext();//MssqlConnString);
+            IsMssqlConnected = true;
+        }
+
+        /// <summary>
         /// Do NOT run this on a live database. It WILL empty your data!
         /// </summary>
         /// <param name="iterations"></param>
         /// <returns></returns>
-        public bool TestDumper(int iterations)
+        public bool TestDumperMongo(int iterations)
         {
             // TEST CONNECTION
             if (Debug) Utilities.ConsoleWriter("Running tests...");
@@ -121,7 +181,101 @@ namespace DatadumpToMongo
             return true;
         }
 
+        public bool TestDumperMssql()
+        {
+            if (!IsMssqlConnected) CreateMssqlContext();
 
+
+            var data = (from i in dataContext.invTypes
+                        //where i.typeName == "Echelon"
+                        join g in dataContext.invGroups on i.groupID equals g.groupID
+                        join c in dataContext.invCategories on g.categoryID equals c.categoryID
+                        select new BaseType
+                        {
+                            InvType = i,
+                            InvGroup = g,
+                            InvCategory = c
+                        });
+
+            
+            foreach (var item in data)
+            {
+                switch ((CategoryTypes)Convert.ToInt32(item.InvCategory.categoryID))
+                {
+                    case CategoryTypes._System:
+                        break;
+                    case CategoryTypes.Owner:
+                        break;
+                    case CategoryTypes.Celestial:
+                        break;
+                    case CategoryTypes.Station:
+                        break;
+                    case CategoryTypes.Material:
+                        break;
+                    case CategoryTypes.Accessories:
+                        break;
+                    case CategoryTypes.Ship:
+                        Utilities.ConsoleWriter("Parsing ship: " + item.InvType.typeName);
+                        Console.WriteLine(DoShip(item).ToJson(set));
+                        return true;
+                        break;
+                    case CategoryTypes.Module:
+                        break;
+                    case CategoryTypes.Charge:
+                        break;
+                    case CategoryTypes.Blueprint:
+                        break;
+                    case CategoryTypes.Trading:
+                        break;
+                    case CategoryTypes.Entity:
+                        break;
+                    case CategoryTypes.Bonus:
+                        break;
+                    case CategoryTypes.Skill:
+                        break;
+                    case CategoryTypes.Commodity:
+                        break;
+                    case CategoryTypes.Drone:
+                        break;
+                    case CategoryTypes.Implant:
+                        break;
+                    case CategoryTypes.Deployable:
+                        break;
+                    case CategoryTypes.Structure:
+                        break;
+                    case CategoryTypes.Reaction:
+                        break;
+                    case CategoryTypes.Asteroid:
+                        break;
+                    case CategoryTypes.Interiors:
+                        break;
+                    case CategoryTypes.Placeables:
+                        break;
+                    case CategoryTypes.Abstract:
+                        break;
+                    case CategoryTypes.Subsystem:
+                        break;
+                    case CategoryTypes.Ancient_Relics:
+                        break;
+                    case CategoryTypes.Decryptors:
+                        break;
+                    case CategoryTypes.Infrastructure_Upgrades:
+                        break;
+                    case CategoryTypes.Sovereignty_Structures:
+                        break;
+                    case CategoryTypes.Planetary_Interaction:
+                        break;
+                    case CategoryTypes.Planetary_Resources:
+                        break;
+                    case CategoryTypes.Planetary_Commodities:
+                        break;
+                    default:
+                        break;
+                }
+            }
+
+            return true;
+        }
 
         /// <summary>
         /// Connect to MongoDB instance.
@@ -188,5 +342,76 @@ namespace DatadumpToMongo
             }
         }
 
+        #region Grab detail about a type and save to mongo
+        private object DoShip(BaseType baseType)
+        {
+            var data = (from ta in dataContext.dgmTypeAttributes
+                        where ta.typeID == baseType.InvType.typeID
+                        join at in dataContext.dgmAttributeTypes on ta.attributeID equals at.attributeID
+                        join ac in dataContext.dgmAttributeCategories on at.categoryID equals ac.categoryID
+                        join uc in dataContext.eveUnits on at.unitID equals uc.unitID
+                        select new
+                        {
+                            typeID = ta.typeID,
+                            valueInt = ta.valueInt,
+                            valueFloat = ta.valueFloat,
+
+                            attributeID = ta.attributeID,
+                            attributeName = at.attributeName,
+                            description = at.description,
+                            iconID = at.iconID,
+                            defaultValue = at.defaultValue,
+                            published = at.published,
+                            displayName = at.displayName,
+                            stackable = at.stackable,
+                            highIsGood = at.highIsGood,
+
+                            categoryID = at.categoryID,
+                            categoryName = ac.categoryName,
+                            categoryDescription = ac.categoryDescription,
+
+                            unitID = at.unitID,
+                            unitName = uc.unitName,
+                            unitDisplayName = uc.displayName,
+                            unitDescription = uc.description
+                        });
+                        //select new { ta = ta, at = at, ac = ac, uc = uc });
+     
+  
+            var ship = new
+            {
+                typeID = baseType.InvType.typeID,
+                typeName = baseType.InvType.typeName,
+                volume = baseType.InvType.volume,
+                radius = baseType.InvType.radius,
+                raceID = baseType.InvType.raceID,
+                published = baseType.InvType.published,
+                portionSize = baseType.InvType.portionSize,
+                mass = baseType.InvType.mass,
+                marketGroupID = baseType.InvType.marketGroupID,
+                iconID = baseType.InvType.iconID,
+                groupID = baseType.InvType.groupID,
+                graphicID = baseType.InvType.graphicID,
+                description = baseType.InvType.description,
+                chanceOfDuplicating = baseType.InvType.chanceOfDuplicating,
+                capacity = baseType.InvType.capacity,
+                basePrice = baseType.InvType.basePrice,
+                Group = baseType.InvGroup,
+                Category = baseType.InvCategory,
+                Attributes = data
+            };
+
+            //dataContext.dgmAttributeTypes
+            return ship;
+        }
+
+        #endregion
+    }
+
+    class BaseType
+    {
+        public invType InvType { get; set; }
+        public invGroup InvGroup { get; set; }
+        public invCategory InvCategory { get; set; }
     }
 }
