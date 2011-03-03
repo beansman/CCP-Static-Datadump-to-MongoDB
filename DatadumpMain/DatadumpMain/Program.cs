@@ -11,17 +11,29 @@ namespace DatadumpMain
     {
         static void Main(string[] args)
         {
-            String mssql = @"";
+            String mssql = @"Data Source=.\sqlexpress;Initial Catalog=evedb;Integrated Security=True";
             String mongo = @"mongodb://localhost/?safe=true";
+            String mongoDb = "KingBoard";
+            String mongoColl = "Types";
+
+            Console.WriteLine("Press any key to start conversion...");
+            Console.ReadLine();
 
             // Create the dumper
-            Datadumper dd = new Datadumper(mongo, mssql);
+            Datadumper dd = new Datadumper(mongo, mssql, mongoDb, mongoColl);
             // Enable debug
             dd.Debug = true;
 
             // Run test!
             //dd.TestDumper(1000000);
-            dd.TestDumperMssql();
+            try
+            {
+                dd.DumpToMongoFromMssql();
+            }
+            catch (Exception e)
+            {
+                Utilities.ConsoleWriter("Exception in conversion: " + e.Message.ToString());
+            }
 
             // Wait for user input before exit!
             Console.ReadLine();
