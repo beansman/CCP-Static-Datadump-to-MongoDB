@@ -12,6 +12,8 @@ namespace DatadumpToMongo
     /// <summary>
     /// Class for converting a CCP Eve Online Static Datadump to MongoDB.
     /// This code _DOES NOT_ handle most exceptions internally. So be aware of this when using it!!!
+    /// 
+    /// All items will have a unique itemID called uniqueID
     /// </summary>
     public class Datadumper
     {
@@ -96,22 +98,39 @@ namespace DatadumpToMongo
         /// </summary>
         private MongoCollection mongoCollection;
 
-        private String mongoDatabaseName = "SomeDatabase";
-        private String mongoCollectionName = "SomeCollection";
+        public String MongoDatabaseName { get; set; }
+        public String MongoCollectionName { get; set; }
         #endregion
 
         #region Mssql specific stuff
         private SDDDataContext dataContext;
         #endregion
 
-        public Datadumper(String mongoConnString, String mssqlConnString)
+        /// <summary>
+        /// Create a new object of Datadumper
+        /// </summary>
+        /// <param name="mongoConnString">Connectionstring for MongoDB (url format)</param>
+        /// <param name="mssqlConnString">Connectionstring for mssql</param>
+        /// <param name="mongoDatabaseName">Databasename for mongo</param>
+        /// <param name="mongoCollectionName">Collectionname for mongo</param>
+        public Datadumper(String mongoConnString, String mssqlConnString, String mongoDatabaseName, String mongoCollectionName)
         {
             if (Debug) Utilities.ConsoleWriter("Constructing dumper...");
             MongoConnString = mongoConnString;
             MssqlConnString = mssqlConnString;
+            MongoDatabaseName = mongoDatabaseName;
+            MongoCollectionName = mongoCollectionName;
+
             IsMongoConnected = false;
             IsMssqlConnected = false;
             if (Debug) Utilities.ConsoleWriter("Dumper constructed...");
+        }
+
+        ~Datadumper()
+        {
+            if (Debug) Utilities.ConsoleWriter("Destroying!");
+            if (this.mongoServer != null && this.mongoServer.State == MongoServerState.Connected)
+                this.mongoServer.Disconnect();
         }
 
         /// <summary>
@@ -119,7 +138,7 @@ namespace DatadumpToMongo
         /// </summary>
         private void CreateMssqlContext()
         {
-            this.dataContext = new SDDDataContext();//MssqlConnString);
+            this.dataContext = new SDDDataContext(MssqlConnString);
             IsMssqlConnected = true;
         }
 
@@ -181,11 +200,108 @@ namespace DatadumpToMongo
             return true;
         }
 
-        public bool TestDumperMssql()
+        public bool DumpToMongoFromMssql()
         {
-            if (!IsMssqlConnected) CreateMssqlContext();
+            DateTime dtStart = DateTime.Now;
+        
+            #region Connection stuff
 
+            if (!IsMssqlConnected)
+            {
+                // Try and create the connection, if exception throw
+                try
+                {
+                    CreateMssqlContext();
+                }
+                catch (Exception e)
+                {
+                    if (Debug) Utilities.ConsoleWriter("Exception in datacontext: " + e.Message.ToString());
+                    throw;
+                }
+            }
+            if (!IsMongoConnected)
+            {
+                if (Debug) Utilities.ConsoleWriter("MongoDB was not connected, Connecting...");
+                try
+                {
+                    ConnectMongoDB();
+                }
+                catch (MongoException me)
+                {
+                    if (Debug) Utilities.ConsoleWriter("MongoException: " + me.Message.ToString());
+                    throw;
+                }
+                catch (Exception e)
+                {
+                    if (Debug) Utilities.ConsoleWriter("Exception: " + e.Message.ToString());
+                    throw;
+                }
+                if (Debug) Utilities.ConsoleWriter("MongoDB connected...");
+            }
+            #endregion
 
+            #region Prepare Mongo
+            this.mongoCollection.RemoveAll();
+            #endregion
+
+            // NPC Names
+            var npc = from i in dataContext.eveNames
+                      select i;
+            // Grab agents
+            var agents = from i in dataContext.agtAgents
+                         // Join info about agents (qual)
+                         join c in dataContext.agtConfigs on i.agentID equals c.agentID
+                         join r in dataContext.agtResearchAgents on i.agentID equals r.agentID
+                         select new
+                         {
+                             i = i,
+                             c = c,
+                             r = r
+                         };
+            // npc corps
+            var crps = from i in dataContext.crpNPCCorporations
+                       select i;
+            
+            // Do extracted stuff.
+
+            DumpMapSolarsystems();
+
+            DumpInvType();
+
+            TimeSpan dtSpan = DateTime.Now - dtStart;
+            Utilities.ConsoleWriter("Mongo contains: " + this.mongoCollection.Count() + " documents");
+            Utilities.ConsoleWriter("Took " + dtSpan.TotalSeconds + "s");
+
+            return true;
+        }
+
+        private void DumpMapSolarsystems()
+        {
+            var systems = from i in dataContext.mapSolarSystems
+                          join c in dataContext.mapConstellations on i.constellationID equals c.constellationID
+                          join r in dataContext.mapRegions on i.regionID equals r.regionID
+                          select new
+                          {
+                              System = i,
+                              Constellation = c,
+                              Region = r
+                          };
+
+            foreach (var item in systems)
+            {
+                if (Debug) Utilities.ConsoleWriter("Parsing solarsystem: " + item.System.solarSystemName);
+                BsonDocument document = item.System.ToBsonDocument();
+                document.Add("Constellation", item.Constellation.ToBsonDocument());
+                document.Add("Region", item.Region.ToBsonDocument());
+                document.Add("uniqueID", new BsonInt64(item.System.solarSystemID));
+                if (item != null)
+                    this.mongoCollection.Insert(document);
+            }
+        }
+
+        private void DumpInvType()
+        {
+            // InvTypes
             var data = (from i in dataContext.invTypes
                         //where i.typeName == "Echelon"
                         join g in dataContext.invGroups on i.groupID equals g.groupID
@@ -196,85 +312,62 @@ namespace DatadumpToMongo
                             InvGroup = g,
                             InvCategory = c
                         });
-
+        
             
             foreach (var item in data)
             {
-                switch ((CategoryTypes)Convert.ToInt32(item.InvCategory.categoryID))
+                if (Debug) Utilities.ConsoleWriter("Parsing " + Enum.GetName(typeof(CategoryTypes), (CategoryTypes)item.InvCategory.categoryID) + ": " + item.InvType.typeName);
+
+                object document = null;
+                switch ((CategoryTypes)item.InvCategory.categoryID)
                 {
                     case CategoryTypes._System:
-                        break;
                     case CategoryTypes.Owner:
-                        break;
                     case CategoryTypes.Celestial:
-                        break;
                     case CategoryTypes.Station:
-                        break;
                     case CategoryTypes.Material:
-                        break;
                     case CategoryTypes.Accessories:
+                    case CategoryTypes.Charge:
+                    case CategoryTypes.Blueprint:
+                    case CategoryTypes.Trading:
+                    case CategoryTypes.Entity:
+                    case CategoryTypes.Bonus:
+                    case CategoryTypes.Skill:
+                    case CategoryTypes.Commodity:
+                    case CategoryTypes.Drone:
+                    case CategoryTypes.Implant:
+                    case CategoryTypes.Deployable:
+                    case CategoryTypes.Structure:
+                    case CategoryTypes.Reaction:
+                    case CategoryTypes.Asteroid:
+                    case CategoryTypes.Interiors:
+                    case CategoryTypes.Placeables:
+                    case CategoryTypes.Abstract:
+                    case CategoryTypes.Subsystem:
+                    case CategoryTypes.Ancient_Relics:
+                    case CategoryTypes.Decryptors:
+                    case CategoryTypes.Infrastructure_Upgrades:
+                    case CategoryTypes.Sovereignty_Structures:
+                    case CategoryTypes.Planetary_Interaction:
+                    case CategoryTypes.Planetary_Resources:
+                    case CategoryTypes.Planetary_Commodities:
+                    default:
+                        // ALl that doesn't fall under a specific category we will let drop through and get handled here
+                        document = DoUnknown(item);
                         break;
                     case CategoryTypes.Ship:
-                        Utilities.ConsoleWriter("Parsing ship: " + item.InvType.typeName);
-                        Console.WriteLine(DoShip(item).ToJson(set));
-                        return true;
+                        document = DoShip(item);
                         break;
                     case CategoryTypes.Module:
+                        document = DoModule(item);
                         break;
-                    case CategoryTypes.Charge:
-                        break;
-                    case CategoryTypes.Blueprint:
-                        break;
-                    case CategoryTypes.Trading:
-                        break;
-                    case CategoryTypes.Entity:
-                        break;
-                    case CategoryTypes.Bonus:
-                        break;
-                    case CategoryTypes.Skill:
-                        break;
-                    case CategoryTypes.Commodity:
-                        break;
-                    case CategoryTypes.Drone:
-                        break;
-                    case CategoryTypes.Implant:
-                        break;
-                    case CategoryTypes.Deployable:
-                        break;
-                    case CategoryTypes.Structure:
-                        break;
-                    case CategoryTypes.Reaction:
-                        break;
-                    case CategoryTypes.Asteroid:
-                        break;
-                    case CategoryTypes.Interiors:
-                        break;
-                    case CategoryTypes.Placeables:
-                        break;
-                    case CategoryTypes.Abstract:
-                        break;
-                    case CategoryTypes.Subsystem:
-                        break;
-                    case CategoryTypes.Ancient_Relics:
-                        break;
-                    case CategoryTypes.Decryptors:
-                        break;
-                    case CategoryTypes.Infrastructure_Upgrades:
-                        break;
-                    case CategoryTypes.Sovereignty_Structures:
-                        break;
-                    case CategoryTypes.Planetary_Interaction:
-                        break;
-                    case CategoryTypes.Planetary_Resources:
-                        break;
-                    case CategoryTypes.Planetary_Commodities:
-                        break;
-                    default:
-                        break;
+                    
                 }
-            }
 
-            return true;
+                // Only insert if document is filled
+                if (document != null)
+                    this.mongoCollection.Insert(document.ToBsonDocument());
+            }
         }
 
         /// <summary>
@@ -287,8 +380,8 @@ namespace DatadumpToMongo
             // Server connected? Select database and collection
             if (this.mongoServer != null && this.mongoServer.State == MongoServerState.Connected)
             {
-                this.mongoDatabase = this.mongoServer[this.mongoDatabaseName];
-                this.mongoCollection = this.mongoDatabase.GetCollection(this.mongoCollectionName);
+                this.mongoDatabase = this.mongoServer[MongoDatabaseName];
+                this.mongoCollection = this.mongoDatabase.GetCollection(MongoCollectionName);
                 IsMongoConnected = true;
 
                 return true;
@@ -302,8 +395,8 @@ namespace DatadumpToMongo
                 // Did it work?
                 if (this.mongoServer.State == MongoServerState.Connected)
                 {
-                    this.mongoDatabase = this.mongoServer[this.mongoDatabaseName];
-                    this.mongoCollection = this.mongoDatabase.GetCollection(this.mongoCollectionName);
+                    this.mongoDatabase = this.mongoServer[MongoDatabaseName];
+                    this.mongoCollection = this.mongoDatabase.GetCollection(MongoCollectionName);
                     IsMongoConnected = true;
 
                     return true;
@@ -325,8 +418,8 @@ namespace DatadumpToMongo
             // Did it work?
             if (this.mongoServer.State == MongoServerState.Connected)
             {
-                this.mongoDatabase = this.mongoServer[this.mongoDatabaseName];
-                this.mongoCollection = this.mongoDatabase.GetCollection(this.mongoCollectionName);
+                this.mongoDatabase = this.mongoServer[MongoDatabaseName];
+                this.mongoCollection = this.mongoDatabase.GetCollection(MongoCollectionName);
                 IsMongoConnected = true;
                 return true;
             }
@@ -343,8 +436,14 @@ namespace DatadumpToMongo
         }
 
         #region Grab detail about a type and save to mongo
-        private object DoShip(BaseType baseType)
+        /// <summary>
+        /// Parse an unknown type from invType
+        /// </summary>
+        /// <param name="baseType"></param>
+        /// <returns></returns>
+        private object DoUnknown(BaseType baseType)
         {
+            // Fetch the attributes
             var data = (from ta in dataContext.dgmTypeAttributes
                         where ta.typeID == baseType.InvType.typeID
                         join at in dataContext.dgmAttributeTypes on ta.attributeID equals at.attributeID
@@ -375,11 +474,13 @@ namespace DatadumpToMongo
                             unitDisplayName = uc.displayName,
                             unitDescription = uc.description
                         });
-                        //select new { ta = ta, at = at, ac = ac, uc = uc });
-     
-  
-            var ship = new
+
+            // Fetch effects?
+
+            // Combine it all in a great mashup!
+            var unknown = new
             {
+                uniqueID = baseType.InvType.typeID,
                 typeID = baseType.InvType.typeID,
                 typeName = baseType.InvType.typeName,
                 volume = baseType.InvType.volume,
@@ -389,6 +490,8 @@ namespace DatadumpToMongo
                 portionSize = baseType.InvType.portionSize,
                 mass = baseType.InvType.mass,
                 marketGroupID = baseType.InvType.marketGroupID,
+                // This is a method call! Grabs marketgroup untill parentgroupid == null
+                marketGroup = DoMarketGroup(baseType.InvType.marketGroupID),
                 iconID = baseType.InvType.iconID,
                 groupID = baseType.InvType.groupID,
                 graphicID = baseType.InvType.graphicID,
@@ -398,13 +501,181 @@ namespace DatadumpToMongo
                 basePrice = baseType.InvType.basePrice,
                 Group = baseType.InvGroup,
                 Category = baseType.InvCategory,
-                Attributes = data
+                //Attributes = data.ToList()
             };
-
-            //dataContext.dgmAttributeTypes
-            return ship;
+            //System.IO.File.WriteAllText(@"C:\json.txt", ship.ToJson(set));
+            return unknown;
         }
 
+        /// <summary>
+        /// Parse a module from invType
+        /// </summary>
+        /// <param name="baseType"></param>
+        /// <returns></returns>
+        private object DoModule(BaseType baseType)
+        {
+            // Fetch the attributes
+            var data = (from ta in dataContext.dgmTypeAttributes
+                        where ta.typeID == baseType.InvType.typeID
+                        join at in dataContext.dgmAttributeTypes on ta.attributeID equals at.attributeID
+                        join ac in dataContext.dgmAttributeCategories on at.categoryID equals ac.categoryID
+                        join uc in dataContext.eveUnits on at.unitID equals uc.unitID
+                        select new
+                        {
+                            typeID = ta.typeID,
+                            valueInt = ta.valueInt,
+                            valueFloat = ta.valueFloat,
+
+                            attributeID = ta.attributeID,
+                            attributeName = at.attributeName,
+                            description = at.description,
+                            iconID = at.iconID,
+                            defaultValue = at.defaultValue,
+                            published = at.published,
+                            displayName = at.displayName,
+                            stackable = at.stackable,
+                            highIsGood = at.highIsGood,
+
+                            categoryID = at.categoryID,
+                            categoryName = ac.categoryName,
+                            categoryDescription = ac.categoryDescription,
+
+                            unitID = at.unitID,
+                            unitName = uc.unitName,
+                            unitDisplayName = uc.displayName,
+                            unitDescription = uc.description
+                        });
+
+            // Fetch effects?
+
+            // Combine it all in a great mashup!
+            var module = new
+            {
+                uniqueID = baseType.InvType.typeID,
+                typeID = baseType.InvType.typeID,
+                typeName = baseType.InvType.typeName,
+                volume = baseType.InvType.volume,
+                radius = baseType.InvType.radius,
+                raceID = baseType.InvType.raceID,
+                published = baseType.InvType.published,
+                portionSize = baseType.InvType.portionSize,
+                mass = baseType.InvType.mass,
+                marketGroupID = baseType.InvType.marketGroupID,
+                // This is a method call! Grabs marketgroup untill parentgroupid == null
+                marketGroup = DoMarketGroup(baseType.InvType.marketGroupID),
+                iconID = baseType.InvType.iconID,
+                groupID = baseType.InvType.groupID,
+                graphicID = baseType.InvType.graphicID,
+                description = baseType.InvType.description,
+                chanceOfDuplicating = baseType.InvType.chanceOfDuplicating,
+                capacity = baseType.InvType.capacity,
+                basePrice = baseType.InvType.basePrice,
+                Group = baseType.InvGroup,
+                Category = baseType.InvCategory,
+                Attributes = data.ToList()
+            };
+            //System.IO.File.WriteAllText(@"C:\json.txt", ship.ToJson(set));
+            return module;
+        }
+
+        /// <summary>
+        /// Parse a ship from invType
+        /// </summary>
+        /// <param name="baseType"></param>
+        /// <returns></returns>
+        private object DoShip(BaseType baseType)
+        {
+            // Fetch the attributes
+            var data = (from ta in dataContext.dgmTypeAttributes
+                        where ta.typeID == baseType.InvType.typeID
+                        join at in dataContext.dgmAttributeTypes on ta.attributeID equals at.attributeID
+                        join ac in dataContext.dgmAttributeCategories on at.categoryID equals ac.categoryID
+                        join uc in dataContext.eveUnits on at.unitID equals uc.unitID
+                        select new
+                        {
+                            typeID = ta.typeID,
+                            valueInt = ta.valueInt,
+                            valueFloat = ta.valueFloat,
+
+                            attributeID = ta.attributeID,
+                            attributeName = at.attributeName,
+                            description = at.description,
+                            iconID = at.iconID,
+                            defaultValue = at.defaultValue,
+                            published = at.published,
+                            displayName = at.displayName,
+                            stackable = at.stackable,
+                            highIsGood = at.highIsGood,
+
+                            categoryID = at.categoryID,
+                            categoryName = ac.categoryName,
+                            categoryDescription = ac.categoryDescription,
+
+                            unitID = at.unitID,
+                            unitName = uc.unitName,
+                            unitDisplayName = uc.displayName,
+                            unitDescription = uc.description
+                        });
+
+            // Fetch effects?
+  
+            // Combine it all in a great mashup!
+            var ship = new
+            {
+                uniqueID = baseType.InvType.typeID,
+                typeID = baseType.InvType.typeID,
+                typeName = baseType.InvType.typeName,
+                volume = baseType.InvType.volume,
+                radius = baseType.InvType.radius,
+                raceID = baseType.InvType.raceID,
+                published = baseType.InvType.published,
+                portionSize = baseType.InvType.portionSize,
+                mass = baseType.InvType.mass,
+                marketGroupID = baseType.InvType.marketGroupID,
+                // This is a method call! Grabs marketgroup untill parentgroupid == null
+                marketGroup = DoMarketGroup(baseType.InvType.marketGroupID),
+                iconID = baseType.InvType.iconID,
+                groupID = baseType.InvType.groupID,
+                graphicID = baseType.InvType.graphicID,
+                description = baseType.InvType.description,
+                chanceOfDuplicating = baseType.InvType.chanceOfDuplicating,
+                capacity = baseType.InvType.capacity,
+                basePrice = baseType.InvType.basePrice,
+                Group = baseType.InvGroup,
+                Category = baseType.InvCategory,
+                Attributes = data.ToList()
+            };
+            //System.IO.File.WriteAllText(@"C:\json.txt", ship.ToJson(set));  
+            return ship;
+        }
+     
+   
+
+        /// <summary>
+        /// Get the marketgroup document
+        /// </summary>
+        /// <param name="marketGroupID">marketgroupid</param>
+        /// <returns></returns>
+        private object DoMarketGroup(short? marketGroupID)
+        {
+            // Yes, bad recursion! Should catch this before doing another one. But this is easier!
+            if (marketGroupID == null) return null;
+
+            // Generate marketgroup tree
+            var marketgroup = from m in dataContext.invMarketGroups
+                              where m.marketGroupID == marketGroupID
+                              select new
+                              {
+                                  marketGroupID = m.marketGroupID,
+                                  marketGroupName = m.marketGroupName,
+                                  iconID = m.iconID,
+                                  hasTypes = m.hasTypes,
+                                  description = m.description,
+                                  parentGroup = DoMarketGroup(m.parentGroupID)
+                              };
+            // Return it, .ToList() is called to force the execution of the above statement
+            return marketgroup.ToList();
+        }
         #endregion
     }
 
