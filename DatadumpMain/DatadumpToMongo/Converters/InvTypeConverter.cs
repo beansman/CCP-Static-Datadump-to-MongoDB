@@ -139,6 +139,143 @@ namespace DatadumpToMongo.Converters
         
 
         #region Grab detail about a type and save to mongo
+       
+
+        /// <summary>
+        /// Parse an unknown type from invType
+        /// </summary>
+        /// <param name="baseType"></param>
+        /// <returns></returns>
+        private object DoUnknown(BaseType baseType)
+        {
+            // Fetch the attributes
+            var attributes = DoAttributes(baseType.InvType.typeID);
+
+            // Fetch effects?
+            var effects = DoEffects(baseType.InvType.typeID);
+
+            // Combine it all in a great mashup!
+            var unknown = new
+            {
+                uniqueID = baseType.InvType.typeID,
+                uniqueName = baseType.InvType.typeName,
+                typeID = baseType.InvType.typeID,
+                typeName = baseType.InvType.typeName,
+                volume = baseType.InvType.volume,
+                radius = baseType.InvType.radius,
+                raceID = baseType.InvType.raceID,
+                published = baseType.InvType.published,
+                portionSize = baseType.InvType.portionSize,
+                mass = baseType.InvType.mass,
+                marketGroupID = baseType.InvType.marketGroupID,
+                // This is a method call! Grabs marketgroup untill parentgroupid == null
+                marketGroup = DoMarketGroup(baseType.InvType.marketGroupID),
+                iconID = baseType.InvType.iconID,
+                groupID = baseType.InvType.groupID,
+                graphicID = baseType.InvType.graphicID,
+                description = baseType.InvType.description,
+                chanceOfDuplicating = baseType.InvType.chanceOfDuplicating,
+                capacity = baseType.InvType.capacity,
+                basePrice = baseType.InvType.basePrice,
+                Group = baseType.InvGroup,
+                Category = baseType.InvCategory,
+                //Attributes = attributes,
+                //Effects = effects
+            };
+            //System.IO.File.WriteAllText(@"C:\json.txt", ship.ToJson(set));
+            return unknown;
+        }
+
+        /// <summary>
+        /// Parse a module from invType
+        /// </summary>
+        /// <param name="baseType"></param>
+        /// <returns></returns>
+        private object DoModule(BaseType baseType)
+        {
+            // Fetch the attributes
+            var attributes = DoAttributes(baseType.InvType.typeID);
+
+            // Fetch effects?
+            var effects = DoEffects(baseType.InvType.typeID);
+
+            // Combine it all in a great mashup!
+            var module = new
+            {
+                uniqueID = baseType.InvType.typeID,
+                uniqueName = baseType.InvType.typeName,
+                typeID = baseType.InvType.typeID,
+                typeName = baseType.InvType.typeName,
+                volume = baseType.InvType.volume,
+                radius = baseType.InvType.radius,
+                raceID = baseType.InvType.raceID,
+                published = baseType.InvType.published,
+                portionSize = baseType.InvType.portionSize,
+                mass = baseType.InvType.mass,
+                marketGroupID = baseType.InvType.marketGroupID,
+                // This is a method call! Grabs marketgroup untill parentgroupid == null
+                marketGroup = DoMarketGroup(baseType.InvType.marketGroupID),
+                iconID = baseType.InvType.iconID,
+                groupID = baseType.InvType.groupID,
+                graphicID = baseType.InvType.graphicID,
+                description = baseType.InvType.description,
+                chanceOfDuplicating = baseType.InvType.chanceOfDuplicating,
+                capacity = baseType.InvType.capacity,
+                basePrice = baseType.InvType.basePrice,
+                Group = baseType.InvGroup,
+                Category = baseType.InvCategory,
+                Attributes = attributes,
+                Effects = effects
+            };
+            //System.IO.File.WriteAllText(@"C:\json.txt", ship.ToJson(set));
+            return module;
+        }
+
+        /// <summary>
+        /// Parse a ship from invType
+        /// </summary>
+        /// <param name="baseType"></param>
+        /// <returns></returns>
+        private object DoShip(BaseType baseType)
+        {// Fetch the attributes
+            var attributes = DoAttributes(baseType.InvType.typeID);
+
+            // Fetch effects?
+            var effects = DoEffects(baseType.InvType.typeID);
+
+            // Combine it all in a great mashup!
+            var ship = new
+            {
+                uniqueID = baseType.InvType.typeID,
+                uniqueName = baseType.InvType.typeName,
+                typeID = baseType.InvType.typeID,
+                typeName = baseType.InvType.typeName,
+                volume = baseType.InvType.volume,
+                radius = baseType.InvType.radius,
+                raceID = baseType.InvType.raceID,
+                published = baseType.InvType.published,
+                portionSize = baseType.InvType.portionSize,
+                mass = baseType.InvType.mass,
+                marketGroupID = baseType.InvType.marketGroupID,
+                // This is a method call! Grabs marketgroup untill parentgroupid == null
+                marketGroup = DoMarketGroup(baseType.InvType.marketGroupID),
+                iconID = baseType.InvType.iconID,
+                groupID = baseType.InvType.groupID,
+                graphicID = baseType.InvType.graphicID,
+                description = baseType.InvType.description,
+                chanceOfDuplicating = baseType.InvType.chanceOfDuplicating,
+                capacity = baseType.InvType.capacity,
+                basePrice = baseType.InvType.basePrice,
+                Group = baseType.InvGroup,
+                Category = baseType.InvCategory,
+                Attributes = attributes,
+                Effects = effects
+            };
+            //System.IO.File.WriteAllText(@"C:\json.txt", ship.ToJson(set));  
+            return ship;
+        }
+
+        #region Helper stuff
         /// <summary>
         /// Get attributes for an invType item
         /// </summary>
@@ -225,139 +362,6 @@ namespace DatadumpToMongo.Converters
         }
 
         /// <summary>
-        /// Parse an unknown type from invType
-        /// </summary>
-        /// <param name="baseType"></param>
-        /// <returns></returns>
-        private object DoUnknown(BaseType baseType)
-        {
-            // Fetch the attributes
-            var attributes = DoAttributes(baseType.InvType.typeID);
-
-            // Fetch effects?
-            var effects = DoEffects(baseType.InvType.typeID);
-
-            // Combine it all in a great mashup!
-            var unknown = new
-            {
-                uniqueID = baseType.InvType.typeID,
-                typeID = baseType.InvType.typeID,
-                typeName = baseType.InvType.typeName,
-                volume = baseType.InvType.volume,
-                radius = baseType.InvType.radius,
-                raceID = baseType.InvType.raceID,
-                published = baseType.InvType.published,
-                portionSize = baseType.InvType.portionSize,
-                mass = baseType.InvType.mass,
-                marketGroupID = baseType.InvType.marketGroupID,
-                // This is a method call! Grabs marketgroup untill parentgroupid == null
-                marketGroup = DoMarketGroup(baseType.InvType.marketGroupID),
-                iconID = baseType.InvType.iconID,
-                groupID = baseType.InvType.groupID,
-                graphicID = baseType.InvType.graphicID,
-                description = baseType.InvType.description,
-                chanceOfDuplicating = baseType.InvType.chanceOfDuplicating,
-                capacity = baseType.InvType.capacity,
-                basePrice = baseType.InvType.basePrice,
-                Group = baseType.InvGroup,
-                Category = baseType.InvCategory,
-                //Attributes = attributes,
-                //Effects = effects
-            };
-            //System.IO.File.WriteAllText(@"C:\json.txt", ship.ToJson(set));
-            return unknown;
-        }
-
-        /// <summary>
-        /// Parse a module from invType
-        /// </summary>
-        /// <param name="baseType"></param>
-        /// <returns></returns>
-        private object DoModule(BaseType baseType)
-        {
-            // Fetch the attributes
-            var attributes = DoAttributes(baseType.InvType.typeID);
-
-            // Fetch effects?
-            var effects = DoEffects(baseType.InvType.typeID);
-
-            // Combine it all in a great mashup!
-            var module = new
-            {
-                uniqueID = baseType.InvType.typeID,
-                typeID = baseType.InvType.typeID,
-                typeName = baseType.InvType.typeName,
-                volume = baseType.InvType.volume,
-                radius = baseType.InvType.radius,
-                raceID = baseType.InvType.raceID,
-                published = baseType.InvType.published,
-                portionSize = baseType.InvType.portionSize,
-                mass = baseType.InvType.mass,
-                marketGroupID = baseType.InvType.marketGroupID,
-                // This is a method call! Grabs marketgroup untill parentgroupid == null
-                marketGroup = DoMarketGroup(baseType.InvType.marketGroupID),
-                iconID = baseType.InvType.iconID,
-                groupID = baseType.InvType.groupID,
-                graphicID = baseType.InvType.graphicID,
-                description = baseType.InvType.description,
-                chanceOfDuplicating = baseType.InvType.chanceOfDuplicating,
-                capacity = baseType.InvType.capacity,
-                basePrice = baseType.InvType.basePrice,
-                Group = baseType.InvGroup,
-                Category = baseType.InvCategory,
-                Attributes = attributes,
-                Effects = effects
-            };
-            //System.IO.File.WriteAllText(@"C:\json.txt", ship.ToJson(set));
-            return module;
-        }
-
-        /// <summary>
-        /// Parse a ship from invType
-        /// </summary>
-        /// <param name="baseType"></param>
-        /// <returns></returns>
-        private object DoShip(BaseType baseType)
-        {// Fetch the attributes
-            var attributes = DoAttributes(baseType.InvType.typeID);
-
-            // Fetch effects?
-            var effects = DoEffects(baseType.InvType.typeID);
-
-            // Combine it all in a great mashup!
-            var ship = new
-            {
-                uniqueID = baseType.InvType.typeID,
-                typeID = baseType.InvType.typeID,
-                typeName = baseType.InvType.typeName,
-                volume = baseType.InvType.volume,
-                radius = baseType.InvType.radius,
-                raceID = baseType.InvType.raceID,
-                published = baseType.InvType.published,
-                portionSize = baseType.InvType.portionSize,
-                mass = baseType.InvType.mass,
-                marketGroupID = baseType.InvType.marketGroupID,
-                // This is a method call! Grabs marketgroup untill parentgroupid == null
-                marketGroup = DoMarketGroup(baseType.InvType.marketGroupID),
-                iconID = baseType.InvType.iconID,
-                groupID = baseType.InvType.groupID,
-                graphicID = baseType.InvType.graphicID,
-                description = baseType.InvType.description,
-                chanceOfDuplicating = baseType.InvType.chanceOfDuplicating,
-                capacity = baseType.InvType.capacity,
-                basePrice = baseType.InvType.basePrice,
-                Group = baseType.InvGroup,
-                Category = baseType.InvCategory,
-                Attributes = attributes,
-                Effects = effects
-            };
-            //System.IO.File.WriteAllText(@"C:\json.txt", ship.ToJson(set));  
-            return ship;
-        }
-     
-   
-
-        /// <summary>
         /// Get the marketgroup document
         /// </summary>
         /// <param name="marketGroupID">marketgroupid</param>
@@ -382,6 +386,7 @@ namespace DatadumpToMongo.Converters
             // Return it, .ToList() is called to force the execution of the above statement
             return marketgroup.ToList();
         }
+        #endregion
         #endregion
     }
     

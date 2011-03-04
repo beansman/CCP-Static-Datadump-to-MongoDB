@@ -14,7 +14,7 @@ namespace DatadumpToMongo
     /// Class for converting a CCP Eve Online Static Datadump to MongoDB.
     /// This code _DOES NOT_ handle most exceptions internally. So be aware of this when using it!!!
     /// 
-    /// All items will have a unique itemID called uniqueID
+    /// All items will have a unique itemID called uniqueID and a unique name called uniqueName
     /// </summary>
     public class Datadumper
     {
@@ -271,32 +271,27 @@ namespace DatadumpToMongo
             this.mongoCollection.RemoveAll();
             #endregion
 
-            // NPC Names
-            var npc = from i in dataContext.eveNames
-                      select i;
-            // Grab agents
-            var agents = from i in dataContext.agtAgents
-                         // Join info about agents (qual)
-                         join c in dataContext.agtConfigs on i.agentID equals c.agentID
-                         join r in dataContext.agtResearchAgents on i.agentID equals r.agentID
-                         select new
-                         {
-                             i = i,
-                             c = c,
-                             r = r
-                         };
-            // npc corps
-            var crps = from i in dataContext.crpNPCCorporations
-                       select i;
+            // Create a list of converters
+            List<IConverter> converters = new List<IConverter>();
 
-            List<IConverter> parsers = new List<IConverter>();
+            // Add the solarsystems
+            converters.Add(new EveNamesConverter()
+            {
+                dataContext = dataContext,
+                mongoCollection = mongoCollection,
+                Debug = Debug
+            });
 
-            parsers.Add(new SolarsystemConverter() { dataContext = dataContext, mongoCollection = mongoCollection, Debug = Debug });
+            // Add the InvTypes
+            converters.Add(new InvTypeConverter()
+            {
+                dataContext = dataContext,
+                mongoCollection = mongoCollection,
+                Debug = Debug
+            });
 
-            parsers.Add(new InvTypeConverter() { dataContext = dataContext, mongoCollection = mongoCollection, Debug = Debug });
-
-            // Loop the parsers!
-            foreach (IConverter item in parsers)
+            // Loop the converters!
+            foreach (IConverter item in converters)
             {
                 item.DoParse();
             }

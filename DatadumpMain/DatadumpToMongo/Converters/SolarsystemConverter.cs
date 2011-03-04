@@ -28,7 +28,7 @@ namespace DatadumpToMongo.Converters
                 document.Add("Constellation", item.Constellation.ToBsonDocument());
                 document.Add("Region", item.Region.ToBsonDocument());
                 document.Add("uniqueID", new BsonInt64(item.System.solarSystemID));
-                if (item != null)
+                if (document != null)
                     this.mongoCollection.Insert(document);
             }
         }
