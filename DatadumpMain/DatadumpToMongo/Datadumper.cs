@@ -55,13 +55,8 @@ namespace DatadumpToMongo
         /// MongoDB database instance
         /// </summary>
         private MongoDatabase mongoDatabase;
-        /// <summary>
-        /// MongoDB collection instance
-        /// </summary>
-        private MongoCollection mongoCollection;
 
         public String MongoDatabaseName { get; set; }
-        public String MongoCollectionName { get; set; }
         #endregion
 
         #region Mssql specific stuff
@@ -75,13 +70,12 @@ namespace DatadumpToMongo
         /// <param name="mssqlConnString">Connectionstring for mssql</param>
         /// <param name="mongoDatabaseName">Databasename for mongo</param>
         /// <param name="mongoCollectionName">Collectionname for mongo</param>
-        public Datadumper(String mongoConnString, String mssqlConnString, String mongoDatabaseName, String mongoCollectionName)
+        public Datadumper(String mongoConnString, String mssqlConnString, String mongoDatabaseName)
         {
             if (Debug) Utilities.ConsoleWriter("Constructing dumper...");
             MongoConnString = mongoConnString;
             MssqlConnString = mssqlConnString;
             MongoDatabaseName = mongoDatabaseName;
-            MongoCollectionName = mongoCollectionName;
 
             IsMongoConnected = false;
             IsMssqlConnected = false;
@@ -115,7 +109,6 @@ namespace DatadumpToMongo
             if (this.mongoServer != null && this.mongoServer.State == MongoServerState.Connected)
             {
                 this.mongoDatabase = this.mongoServer[MongoDatabaseName];
-                this.mongoCollection = this.mongoDatabase.GetCollection(MongoCollectionName);
                 IsMongoConnected = true;
 
                 return true;
@@ -130,7 +123,6 @@ namespace DatadumpToMongo
                 if (this.mongoServer.State == MongoServerState.Connected)
                 {
                     this.mongoDatabase = this.mongoServer[MongoDatabaseName];
-                    this.mongoCollection = this.mongoDatabase.GetCollection(MongoCollectionName);
                     IsMongoConnected = true;
 
                     return true;
@@ -138,7 +130,6 @@ namespace DatadumpToMongo
                 else
                 {
                     this.IsMongoConnected = false;
-                    this.mongoCollection = null;
                     this.mongoDatabase = null;
                     this.mongoServer = null;
 
@@ -153,7 +144,6 @@ namespace DatadumpToMongo
             if (this.mongoServer.State == MongoServerState.Connected)
             {
                 this.mongoDatabase = this.mongoServer[MongoDatabaseName];
-                this.mongoCollection = this.mongoDatabase.GetCollection(MongoCollectionName);
                 IsMongoConnected = true;
                 return true;
             }
@@ -161,7 +151,6 @@ namespace DatadumpToMongo
             {
                 // Did not work, reset
                 this.IsMongoConnected = false;
-                this.mongoCollection = null;
                 this.mongoDatabase = null;
                 this.mongoServer = null;
 
@@ -169,64 +158,7 @@ namespace DatadumpToMongo
             }
         }
 
-        /// <summary>
-        /// Do NOT run this on a live database. It WILL empty your data!
-        /// </summary>
-        /// <param name="iterations"></param>
-        /// <returns></returns>
-        public bool TestDumperMongo(int iterations)
-        {
-            // TEST CONNECTION
-            if (Debug) Utilities.ConsoleWriter("Running tests...");
-            if (!IsMongoConnected)
-            {
-                if (Debug) Utilities.ConsoleWriter("MongoDB was not connected, Connecting...");
-                try
-                {
-                    ConnectMongoDB();
-                }
-                catch (MongoException me)
-                {
-                    if (Debug) Utilities.ConsoleWriter("MongoException: " + me.Message.ToString());
-                    throw;
-                }
-                catch (Exception e)
-                {
-                    if (Debug) Utilities.ConsoleWriter("Exception: " + e.Message.ToString());
-                    throw;
-                }
-                if (Debug) Utilities.ConsoleWriter("MongoDB connected...");
-            }
-
-            // EMPTY DATABASE
-            if (Debug) Utilities.ConsoleWriter("Emptying collection...");
-            this.mongoCollection.RemoveAll();
-            if (Debug) Utilities.ConsoleWriter("Collection contains: " + this.mongoCollection.Count() + " elements...");
-
-
-            // RUN ITERATION TEST
-            if (Debug) Utilities.ConsoleWriter("Running iteration test over " + iterations + " iterations");
-            for (int i = 0; i < iterations; i++)
-            {
-                var document = new BsonDocument
-                {
-                    {"demo1", i.ToString()}
-                };
-                this.mongoCollection.Insert(document);
-            }
-            if (Debug) Utilities.ConsoleWriter("Done inserting...");
-
-            //CHECK TEST
-            if (mongoCollection.Count() != iterations)
-            {
-                if (Debug) Utilities.ConsoleWriter("There was an error in the insertion, count not matching!!!");
-                return false;
-            }
-            if (Debug) Utilities.ConsoleWriter("All iterations inserted correctly! We have connection");
-
-            return true;
-        }
-
+     
         public bool DumpToMongoFromMssql()
         {
             DateTime dtStart = DateTime.Now;
@@ -267,26 +199,36 @@ namespace DatadumpToMongo
             }
             #endregion
 
-            #region Prepare Mongo
-            this.mongoCollection.RemoveAll();
-            #endregion
+            Utilities.ConsoleWriter("Dropping the old db. Clean start!");
+            // Drop the db!
+            this.mongoDatabase.Drop();
+            this.mongoDatabase = this.mongoServer[this.MongoDatabaseName];
 
             // Create a list of converters
             List<IConverter> converters = new List<IConverter>();
 
             // Add the solarsystems
-            converters.Add(new EveNamesConverter()
+            converters.Add(new SolarsystemConverter()
             {
                 dataContext = dataContext,
-                mongoCollection = mongoCollection,
+                mongoCollection = this.mongoDatabase.GetCollection("Solarsystems"),
                 Debug = Debug
             });
+
+            // Add the regions
+            converters.Add(new RegionConverter()
+            {
+                dataContext = dataContext,
+                mongoCollection = this.mongoDatabase.GetCollection("Regions"),
+                Debug = Debug
+            });
+
 
             // Add the InvTypes
             converters.Add(new InvTypeConverter()
             {
                 dataContext = dataContext,
-                mongoCollection = mongoCollection,
+                mongoCollection = this.mongoDatabase.GetCollection("Types"),
                 Debug = Debug
             });
 
@@ -297,7 +239,11 @@ namespace DatadumpToMongo
             }
             
             TimeSpan dtSpan = DateTime.Now - dtStart;
-            Utilities.ConsoleWriter("Mongo contains: " + this.mongoCollection.Count() + " documents");
+            foreach (var item in this.mongoDatabase.GetCollectionNames())
+            {
+                Utilities.ConsoleWriter("Mongo collection: " + item + " contains: " + this.mongoDatabase.GetCollection(item).Count() + " documents");
+            }
+            
             Utilities.ConsoleWriter("Took " + dtSpan.TotalSeconds + "s");
 
             return true;

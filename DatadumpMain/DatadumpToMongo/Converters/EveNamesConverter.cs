@@ -6,6 +6,9 @@ using MongoDB.Bson;
 
 namespace DatadumpToMongo.Converters
 {
+    /// <summary>
+    /// Not used!
+    /// </summary>
     class EveNamesConverter : IConverter
     {
         enum category
@@ -42,7 +45,7 @@ namespace DatadumpToMongo.Converters
                        select new BaseName
                        {
                            // Cast to non-nullable (we are almost sure these are set)
-                           category = (byte)name.categoryID,
+                           categoryID = (byte)name.categoryID,
                            groupID = (short)name.groupID,
                            itemID = name.itemID,
                            itemName = name.itemName,
@@ -53,7 +56,7 @@ namespace DatadumpToMongo.Converters
             foreach (var item in data)
             {
                 object document = null;
-                switch ((category)item.category)
+                switch ((category)item.categoryID)
                 {
                     case category.Names:
                         if (Debug) Utilities.ConsoleWriter("Parsing Name: " + item.itemName);
@@ -81,17 +84,12 @@ namespace DatadumpToMongo.Converters
             switch ((GroupNames)name.groupID)
             {
                 case GroupNames.Character:
-                    break;
                 case GroupNames.Corporation:
-                    break;
                 case GroupNames.Faction:
-                    break;
                 case GroupNames.Neutral_Object_Oriented_bastards:
-                    break;
                 default:
-                    break;
+                    return DoUnknown(name);
             }
-            return null;
         }
 
         private object DoCelestial(BaseName name)
@@ -99,25 +97,17 @@ namespace DatadumpToMongo.Converters
             switch ((GroupCelestials)name.groupID)
             {
                 case GroupCelestials.Region:
-                    break;
                 case GroupCelestials.Constellation:
-                    break;
+                case GroupCelestials.Star:
+                case GroupCelestials.Planet:
+                case GroupCelestials.Moon:
+                case GroupCelestials.Asteroid_Belt:
+                case GroupCelestials.Station:
+                default:
+                    return DoUnknown(name);
                 case GroupCelestials.Solarsystem:
                     return DoSystem(name);
-                case GroupCelestials.Star:
-                    break;
-                case GroupCelestials.Planet:
-                    break;
-                case GroupCelestials.Moon:
-                    break;
-                case GroupCelestials.Asteroid_Belt:
-                    break;
-                case GroupCelestials.Station:
-                    break;
-                default:
-                    break;
             }
-            return null;
         }
 
 
@@ -130,10 +120,25 @@ namespace DatadumpToMongo.Converters
                     this.mongoCollection.Insert(document);*/
 
         #region Specific parsers
+        private object DoUnknown(BaseName name)
+        {
+            return new
+            {
+                uniqueID = name.itemID,
+                uniqueName = name.itemName,
+                name.typeID,
+                name.itemName,
+                name.itemID,
+                name.groupID,
+                category = name.categoryID
+            };
+        }
+
         private object DoNpc(BaseName name)
         {
             // Grab agents
             var agents = from i in dataContext.agtAgents
+                         where i.agentID == name.itemID
                          // Join info about agents (qual)
                          join c in dataContext.agtConfigs on i.agentID equals c.agentID
                          join r in dataContext.agtResearchAgents on i.agentID equals r.agentID
@@ -218,7 +223,7 @@ namespace DatadumpToMongo.Converters
     {
         public Int64 itemID { get; set; }
         public String itemName { get; set; }
-        public int category { get; set; }
+        public byte categoryID { get; set; }
         public int groupID { get; set; }
         public int typeID { get; set; }
     }

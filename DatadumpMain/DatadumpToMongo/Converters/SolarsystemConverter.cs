@@ -6,7 +6,10 @@ using MongoDB.Bson;
 
 namespace DatadumpToMongo.Converters
 {
-    class SolarsystemConverter:IConverter
+    /// <summary>
+    /// Convert solarsystems to mongo
+    /// </summary>
+    class SolarsystemConverter : IConverter
     {
 
         private void DumpMapSolarsystems()
@@ -27,7 +30,7 @@ namespace DatadumpToMongo.Converters
                 BsonDocument document = item.System.ToBsonDocument();
                 document.Add("Constellation", item.Constellation.ToBsonDocument());
                 document.Add("Region", item.Region.ToBsonDocument());
-                document.Add("uniqueID", new BsonInt64(item.System.solarSystemID));
+                //document.Add("uniqueID", new BsonInt64(item.System.solarSystemID));
                 if (document != null)
                     this.mongoCollection.Insert(document);
             }

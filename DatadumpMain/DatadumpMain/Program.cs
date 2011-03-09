@@ -14,15 +14,14 @@ namespace DatadumpMain
             String mssql = @"Data Source=.\sqlexpress;Initial Catalog=evedb;Integrated Security=True";
             String mongo = @"mongodb://localhost/?safe=true";
             String mongoDb = "KingBoard";
-            String mongoColl = "Types";
 
             Console.WriteLine("Press any key to start conversion...");
             Console.ReadLine();
 
             // Create the dumper
-            Datadumper dd = new Datadumper(mongo, mssql, mongoDb, mongoColl);
+            Datadumper dd = new Datadumper(mongo, mssql, mongoDb);
             // Enable debug
-            dd.Debug = true;
+            dd.Debug = false;
 
             // Run test!
             //dd.TestDumper(1000000);

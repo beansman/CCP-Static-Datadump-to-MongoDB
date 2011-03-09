@@ -150,15 +150,14 @@ namespace DatadumpToMongo.Converters
         {
             // Fetch the attributes
             var attributes = DoAttributes(baseType.InvType.typeID);
-
             // Fetch effects?
             var effects = DoEffects(baseType.InvType.typeID);
 
             // Combine it all in a great mashup!
             var unknown = new
             {
-                uniqueID = baseType.InvType.typeID,
-                uniqueName = baseType.InvType.typeName,
+                //uniqueID = baseType.InvType.typeID,
+                //uniqueName = baseType.InvType.typeName,
                 typeID = baseType.InvType.typeID,
                 typeName = baseType.InvType.typeName,
                 volume = baseType.InvType.volume,
@@ -179,8 +178,8 @@ namespace DatadumpToMongo.Converters
                 basePrice = baseType.InvType.basePrice,
                 Group = baseType.InvGroup,
                 Category = baseType.InvCategory,
-                //Attributes = attributes,
-                //Effects = effects
+                Attributes = attributes,
+                Effects = effects
             };
             //System.IO.File.WriteAllText(@"C:\json.txt", ship.ToJson(set));
             return unknown;
@@ -202,8 +201,8 @@ namespace DatadumpToMongo.Converters
             // Combine it all in a great mashup!
             var module = new
             {
-                uniqueID = baseType.InvType.typeID,
-                uniqueName = baseType.InvType.typeName,
+                //uniqueID = baseType.InvType.typeID,
+                //uniqueName = baseType.InvType.typeName,
                 typeID = baseType.InvType.typeID,
                 typeName = baseType.InvType.typeName,
                 volume = baseType.InvType.volume,
@@ -246,8 +245,8 @@ namespace DatadumpToMongo.Converters
             // Combine it all in a great mashup!
             var ship = new
             {
-                uniqueID = baseType.InvType.typeID,
-                uniqueName = baseType.InvType.typeName,
+                //uniqueID = baseType.InvType.typeID,
+                //uniqueName = baseType.InvType.typeName,
                 typeID = baseType.InvType.typeID,
                 typeName = baseType.InvType.typeName,
                 volume = baseType.InvType.volume,
