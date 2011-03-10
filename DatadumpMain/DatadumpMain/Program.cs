@@ -13,7 +13,7 @@ namespace DatadumpMain
         {
             String mssql = @"Data Source=.\sqlexpress;Initial Catalog=evedb;Integrated Security=True";
             String mongo = @"mongodb://localhost/?safe=true";
-            String mongoDb = "KingBoard";
+            String mongoDb = "Kingboard";
 
             Console.WriteLine("Press any key to start conversion...");
             Console.ReadLine();

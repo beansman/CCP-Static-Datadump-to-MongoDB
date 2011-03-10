@@ -217,8 +217,8 @@ namespace DatadumpToMongo.Converters
         {
             // kinda hacky, but needed to fit the interface ;)
             // grab the extra collections we need by using the database referenced in the given collection
-            RegionCollection = mongoCollection.Database.GetCollection("Regions");
-            ConstellationCollection = mongoCollection.Database.GetCollection("Constellations");
+            RegionCollection = mongoCollection.Database.GetCollection("Kingboard_EveRegion");
+            ConstellationCollection = mongoCollection.Database.GetCollection("Kingboard_EveConstellation");
             SystemCollection = mongoCollection;
 
             // Do the actual parsing

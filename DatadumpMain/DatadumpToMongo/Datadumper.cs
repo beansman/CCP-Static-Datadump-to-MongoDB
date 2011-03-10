@@ -209,14 +209,14 @@ namespace DatadumpToMongo
             converters.Add(new InvTypeConverter()
             {
                 dataContext = dataContext,
-                mongoCollection = this.mongoDatabase.GetCollection("Types"),
+                mongoCollection = this.mongoDatabase.GetCollection("Kingboard_EveItem"),
                 Debug = Debug
             });
             
             converters.Add(new MapConverter()
             {
                 dataContext = dataContext,
-                mongoCollection = this.mongoDatabase.GetCollection("Solarsystems"),
+                mongoCollection = this.mongoDatabase.GetCollection("Kingboard_EveSolarSystem"),
                 Debug = Debug
             });
 
