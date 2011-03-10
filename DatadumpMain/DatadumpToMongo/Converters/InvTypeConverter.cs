@@ -136,11 +136,7 @@ namespace DatadumpToMongo.Converters
             }
         }
 
-        
-
         #region Grab detail about a type and save to mongo
-       
-
         /// <summary>
         /// Parse an unknown type from invType
         /// </summary>
@@ -389,6 +385,9 @@ namespace DatadumpToMongo.Converters
         #endregion
     }
     
+    /// <summary>
+    /// Holding class for initial search
+    /// </summary>
     class BaseType
     {
         public invType InvType { get; set; }

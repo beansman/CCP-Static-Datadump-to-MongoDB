@@ -21,7 +21,7 @@ namespace DatadumpMain
             // Create the dumper
             Datadumper dd = new Datadumper(mongo, mssql, mongoDb);
             // Enable debug
-            dd.Debug = false;
+            dd.Debug = true;
 
             // Run test!
             //dd.TestDumper(1000000);

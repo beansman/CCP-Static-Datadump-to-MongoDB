@@ -150,7 +150,6 @@ namespace DatadumpToMongo.Converters
                              Configs = c,
                              ResearchAgents = r
                          };
-
             return agents.ToList();
         }
 
@@ -195,7 +194,6 @@ namespace DatadumpToMongo.Converters
                              Constellation = c,
                              Region = r
                          };
-
             return (system.Count() > 0) ? system.First() : null;
         }
         #endregion

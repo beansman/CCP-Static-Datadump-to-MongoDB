@@ -13,12 +13,10 @@ namespace DatadumpToMongo
     /// <summary>
     /// Class for converting a CCP Eve Online Static Datadump to MongoDB.
     /// This code _DOES NOT_ handle most exceptions internally. So be aware of this when using it!!!
-    /// 
-    /// All items will have a unique itemID called uniqueID and a unique name called uniqueName
     /// </summary>
     public class Datadumper
     {
-                /// <summary>
+        /// <summary>
         /// Define settings for the JSON output (debug, yay!)
         /// </summary>
         JsonWriterSettings set = new JsonWriterSettings() { OutputMode = JsonOutputMode.JavaScript, NewLineChars = "\r\n", Indent = true, IndentChars = "  " };
@@ -207,28 +205,18 @@ namespace DatadumpToMongo
             // Create a list of converters
             List<IConverter> converters = new List<IConverter>();
 
-            // Add the solarsystems
-            converters.Add(new SolarsystemConverter()
-            {
-                dataContext = dataContext,
-                mongoCollection = this.mongoDatabase.GetCollection("Solarsystems"),
-                Debug = Debug
-            });
-
-            // Add the regions
-            converters.Add(new RegionConverter()
-            {
-                dataContext = dataContext,
-                mongoCollection = this.mongoDatabase.GetCollection("Regions"),
-                Debug = Debug
-            });
-
-
             // Add the InvTypes
             converters.Add(new InvTypeConverter()
             {
                 dataContext = dataContext,
                 mongoCollection = this.mongoDatabase.GetCollection("Types"),
+                Debug = Debug
+            });
+            
+            converters.Add(new MapConverter()
+            {
+                dataContext = dataContext,
+                mongoCollection = this.mongoDatabase.GetCollection("Solarsystems"),
                 Debug = Debug
             });
 
@@ -237,7 +225,7 @@ namespace DatadumpToMongo
             {
                 item.DoParse();
             }
-            
+
             TimeSpan dtSpan = DateTime.Now - dtStart;
             foreach (var item in this.mongoDatabase.GetCollectionNames())
             {
