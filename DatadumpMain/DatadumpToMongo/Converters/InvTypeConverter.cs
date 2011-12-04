@@ -364,7 +364,8 @@ namespace DatadumpToMongo.Converters
         private object DoMarketGroup(short? marketGroupID)
         {
             // Yes, bad recursion! Should catch this before doing another one. But this is easier!
-            if (marketGroupID == null) return null;
+            if (marketGroupID == null) 
+                return null;
 
             // Generate marketgroup tree
             var marketgroup = from m in dataContext.invMarketGroups
@@ -379,7 +380,7 @@ namespace DatadumpToMongo.Converters
                                   parentGroup = DoMarketGroup(m.parentGroupID)
                               };
             // Return it, .ToList() is called to force the execution of the above statement
-            return marketgroup.ToList();
+            return marketgroup.Single();
         }
         #endregion
         #endregion
