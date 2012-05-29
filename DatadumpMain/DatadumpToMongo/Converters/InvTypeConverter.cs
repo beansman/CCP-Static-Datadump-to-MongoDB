@@ -78,7 +78,6 @@ namespace DatadumpToMongo.Converters
                             InvGroup = g,
                             InvCategory = c
                         });
-        
             
             foreach (var item in data)
             {
@@ -167,7 +166,7 @@ namespace DatadumpToMongo.Converters
                 marketGroup = DoMarketGroup(baseType.InvType.marketGroupID),
                 iconID = baseType.InvType.iconID,
                 groupID = baseType.InvType.groupID,
-                graphicID = baseType.InvType.graphicID,
+                //graphicID = baseType.InvType.graphicID,
                 description = baseType.InvType.description,
                 chanceOfDuplicating = baseType.InvType.chanceOfDuplicating,
                 capacity = baseType.InvType.capacity,
@@ -212,7 +211,7 @@ namespace DatadumpToMongo.Converters
                 marketGroup = DoMarketGroup(baseType.InvType.marketGroupID),
                 iconID = baseType.InvType.iconID,
                 groupID = baseType.InvType.groupID,
-                graphicID = baseType.InvType.graphicID,
+                //graphicID = baseType.InvType.graphicID,
                 description = baseType.InvType.description,
                 chanceOfDuplicating = baseType.InvType.chanceOfDuplicating,
                 capacity = baseType.InvType.capacity,
@@ -256,7 +255,7 @@ namespace DatadumpToMongo.Converters
                 marketGroup = DoMarketGroup(baseType.InvType.marketGroupID),
                 iconID = baseType.InvType.iconID,
                 groupID = baseType.InvType.groupID,
-                graphicID = baseType.InvType.graphicID,
+                //graphicID = baseType.InvType.graphicID,
                 description = baseType.InvType.description,
                 chanceOfDuplicating = baseType.InvType.chanceOfDuplicating,
                 capacity = baseType.InvType.capacity,
@@ -361,7 +360,7 @@ namespace DatadumpToMongo.Converters
         /// </summary>
         /// <param name="marketGroupID">marketgroupid</param>
         /// <returns></returns>
-        private object DoMarketGroup(short? marketGroupID)
+        private object DoMarketGroup(int? marketGroupID)
         {
             // Yes, bad recursion! Should catch this before doing another one. But this is easier!
             if (marketGroupID == null) 
