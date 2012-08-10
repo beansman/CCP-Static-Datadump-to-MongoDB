@@ -453,7 +453,6 @@
       <Column Name="groupID" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="typeName" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
       <Column Name="description" Type="System.String" DbType="NVarChar(3000)" CanBeNull="true" />
-      <Column Name="radius" Type="System.Double" DbType="Float" CanBeNull="true" />
       <Column Name="mass" Type="System.Double" DbType="Float" CanBeNull="true" />
       <Column Name="volume" Type="System.Double" DbType="Float" CanBeNull="true" />
       <Column Name="capacity" Type="System.Double" DbType="Float" CanBeNull="true" />

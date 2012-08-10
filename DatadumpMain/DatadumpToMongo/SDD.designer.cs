@@ -9180,8 +9180,6 @@ namespace DatadumpToMongo
 		
 		private string _description;
 		
-		private System.Nullable<double> _radius;
-		
 		private System.Nullable<double> _mass;
 		
 		private System.Nullable<double> _volume;
@@ -9214,8 +9212,6 @@ namespace DatadumpToMongo
     partial void OntypeNameChanged();
     partial void OndescriptionChanging(string value);
     partial void OndescriptionChanged();
-    partial void OnradiusChanging(System.Nullable<double> value);
-    partial void OnradiusChanged();
     partial void OnmassChanging(System.Nullable<double> value);
     partial void OnmassChanged();
     partial void OnvolumeChanging(System.Nullable<double> value);
@@ -9319,26 +9315,6 @@ namespace DatadumpToMongo
 					this._description = value;
 					this.SendPropertyChanged("description");
 					this.OndescriptionChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_radius", DbType="Float")]
-		public System.Nullable<double> radius
-		{
-			get
-			{
-				return this._radius;
-			}
-			set
-			{
-				if ((this._radius != value))
-				{
-					this.OnradiusChanging(value);
-					this.SendPropertyChanging();
-					this._radius = value;
-					this.SendPropertyChanged("radius");
-					this.OnradiusChanged();
 				}
 			}
 		}
