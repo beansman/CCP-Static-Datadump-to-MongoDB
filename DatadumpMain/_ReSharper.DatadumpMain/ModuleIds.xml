@@ -1,0 +1,4 @@
+<Modules>
+  <Module PersistentId="5728C29B-2E41-40D4-9A8A-71DE4E9FAE5C" ModuleId="DatadumpMain" />
+  <Module PersistentId="B0D41240-211B-43F1-A57C-E7BE24644C70" ModuleId="DatadumpToMongo" />
+</Modules>

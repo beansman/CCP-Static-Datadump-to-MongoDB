@@ -82,7 +82,7 @@ namespace DatadumpToMongo.Converters
             foreach (var item in data)
             {
                 if (Debug) Utilities.ConsoleWriter("Parsing " + Enum.GetName(typeof(CategoryTypes), (CategoryTypes)item.InvCategory.categoryID) + ": " + item.InvType.typeName);
-
+                
                 object document = null;
                 switch ((CategoryTypes)item.InvCategory.categoryID)
                 {
@@ -379,7 +379,9 @@ namespace DatadumpToMongo.Converters
                                   parentGroup = DoMarketGroup(m.parentGroupID)
                               };
             // Return it, .ToList() is called to force the execution of the above statement
-            return marketgroup.Single();
+            if (marketgroup.Any())
+                return marketgroup.Single();
+            return null;
         }
         #endregion
         #endregion

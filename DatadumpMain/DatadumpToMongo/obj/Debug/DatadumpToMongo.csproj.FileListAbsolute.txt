@@ -1,0 +1,8 @@
+C:\Users\niesim\Documents\GitHub\CCP-Static-Datadump-to-MongoDB\DatadumpMain\DatadumpToMongo\bin\Debug\DatadumpToMongo.dll.config
+C:\Users\niesim\Documents\GitHub\CCP-Static-Datadump-to-MongoDB\DatadumpMain\DatadumpToMongo\bin\Debug\DatadumpToMongo.dll
+C:\Users\niesim\Documents\GitHub\CCP-Static-Datadump-to-MongoDB\DatadumpMain\DatadumpToMongo\bin\Debug\DatadumpToMongo.pdb
+C:\Users\niesim\Documents\GitHub\CCP-Static-Datadump-to-MongoDB\DatadumpMain\DatadumpToMongo\bin\Debug\MongoDB.Bson.dll
+C:\Users\niesim\Documents\GitHub\CCP-Static-Datadump-to-MongoDB\DatadumpMain\DatadumpToMongo\bin\Debug\MongoDB.Driver.dll
+C:\Users\niesim\Documents\GitHub\CCP-Static-Datadump-to-MongoDB\DatadumpMain\DatadumpToMongo\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\niesim\Documents\GitHub\CCP-Static-Datadump-to-MongoDB\DatadumpMain\DatadumpToMongo\obj\Debug\DatadumpToMongo.dll
+C:\Users\niesim\Documents\GitHub\CCP-Static-Datadump-to-MongoDB\DatadumpMain\DatadumpToMongo\obj\Debug\DatadumpToMongo.pdb
