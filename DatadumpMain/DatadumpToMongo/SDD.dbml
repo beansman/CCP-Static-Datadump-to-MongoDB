@@ -276,26 +276,6 @@
       <Column Name="isDefault" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
     </Type>
   </Table>
-  <Table Name="dbo.eveGraphics" Member="eveGraphics">
-    <Type Name="eveGraphic">
-      <Column Name="graphicID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="graphicFile" Type="System.String" DbType="VarChar(500) NOT NULL" CanBeNull="false" />
-      <Column Name="description" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
-      <Column Name="obsolete" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
-      <Column Name="graphicType" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
-      <Column Name="collidable" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
-      <Column Name="explosionID" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="directoryID" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="graphicName" Type="System.String" DbType="NVarChar(64) NOT NULL" CanBeNull="false" />
-    </Type>
-  </Table>
-  <Table Name="dbo.eveIcons" Member="eveIcons">
-    <Type Name="eveIcon">
-      <Column Name="iconID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="iconFile" Type="System.String" DbType="VarChar(500) NOT NULL" CanBeNull="false" />
-      <Column Name="description" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
-    </Type>
-  </Table>
   <Table Name="dbo.eveUnits" Member="eveUnits">
     <Type Name="eveUnit">
       <Column Name="unitID" Type="System.Byte" DbType="TinyInt NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
@@ -462,7 +442,6 @@
       <Column Name="published" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
       <Column Name="marketGroupID" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="chanceOfDuplicating" Type="System.Double" DbType="Float" CanBeNull="true" />
-      <Column Name="iconID" Type="System.Int32" DbType="Int" CanBeNull="true" />
     </Type>
   </Table>
   <Table Name="dbo.invUniqueNames" Member="invUniqueNames">

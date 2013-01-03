@@ -82,7 +82,7 @@ namespace DatadumpToMongo.Converters
             foreach (var item in data)
             {
                 if (Debug) Utilities.ConsoleWriter("Parsing " + Enum.GetName(typeof(CategoryTypes), (CategoryTypes)item.InvCategory.categoryID) + ": " + item.InvType.typeName);
-
+                
                 object document = null;
                 switch ((CategoryTypes)item.InvCategory.categoryID)
                 {
@@ -164,7 +164,7 @@ namespace DatadumpToMongo.Converters
                 marketGroupID = baseType.InvType.marketGroupID,
                 // This is a method call! Grabs marketgroup untill parentgroupid == null
                 marketGroup = DoMarketGroup(baseType.InvType.marketGroupID),
-                iconID = baseType.InvType.iconID,
+                //iconID = baseType.InvType.iconID,
                 groupID = baseType.InvType.groupID,
                 //graphicID = baseType.InvType.graphicID,
                 description = baseType.InvType.description,
@@ -209,7 +209,7 @@ namespace DatadumpToMongo.Converters
                 marketGroupID = baseType.InvType.marketGroupID,
                 // This is a method call! Grabs marketgroup untill parentgroupid == null
                 marketGroup = DoMarketGroup(baseType.InvType.marketGroupID),
-                iconID = baseType.InvType.iconID,
+                //iconID = baseType.InvType.iconID,
                 groupID = baseType.InvType.groupID,
                 //graphicID = baseType.InvType.graphicID,
                 description = baseType.InvType.description,
@@ -253,7 +253,7 @@ namespace DatadumpToMongo.Converters
                 marketGroupID = baseType.InvType.marketGroupID,
                 // This is a method call! Grabs marketgroup untill parentgroupid == null
                 marketGroup = DoMarketGroup(baseType.InvType.marketGroupID),
-                iconID = baseType.InvType.iconID,
+                //iconID = baseType.InvType.iconID,
                 groupID = baseType.InvType.groupID,
                 //graphicID = baseType.InvType.graphicID,
                 description = baseType.InvType.description,
@@ -379,7 +379,9 @@ namespace DatadumpToMongo.Converters
                                   parentGroup = DoMarketGroup(m.parentGroupID)
                               };
             // Return it, .ToList() is called to force the execution of the above statement
-            return marketgroup.Single();
+            if (marketgroup.Any())
+                return marketgroup.Single();
+            return null;
         }
         #endregion
         #endregion
