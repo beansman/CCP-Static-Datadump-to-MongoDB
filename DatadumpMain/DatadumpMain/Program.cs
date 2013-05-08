@@ -11,7 +11,7 @@ namespace DatadumpMain
     {
         static void Main(string[] args)
         {
-            String mssql = @"Data Source=.\sqlexpress;Initial Catalog=evedb;Integrated Security=True";
+            String mssql = @"Data Source=lbidk-w7047;Initial Catalog=evedb;Integrated Security=True";
             String mongo = @"mongodb://localhost/?safe=true";
             String mongoDb = "Kingboard";
 
