@@ -2,6 +2,13 @@ This module is made to move data from the CCP Static Datadump to MongoDB.
 
 Still work in progress!
 
+###
+Howto for me
+* cmd.exe - "C:\mongodb>bin\mongod.exe --dbpath c:\mongodb\data"
+* Run tool in VS2010
+* cmd.exe - "C:\mongodb>bin\mongodump.exe --dbpath c:\mongodb\data -o c:\mongodb\dump"
+* Zip the "c:\mongodb\dump\Kingboard" folder to Kingboard.zip
+
 ### Links to self :)
 [Database relations](http://games.chruker.dk/eve_online/files/dbo_002.pdf)
 [Markdown Guide](http://daringfireball.net/projects/markdown/basics)
